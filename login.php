@@ -1,3 +1,16 @@
+<?php
+	session_start();
+
+	// IF THE USER HAS ALREADY LOGGED IN
+	if(isset($_SESSION['email_system']) && isset($_SESSION['password_system']))
+	{
+		header('Location: index.php');
+		exit();
+	}
+	// ELSE
+	include 'db_con.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +22,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title> MySystem- Login</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,6 +35,45 @@
 
 </head>
 
+<!-- PHP SCRIPT WHEN SUBMIT -->
+
+<?php
+
+    if( $_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login']))
+    {
+        $email = ($_POST['email']);
+        $password = ($_POST['password']);
+        // $hashedPass = md5($password);
+
+        $sql = "SELECT * FROM users WHERE email='$email' AND password='$password' ";
+        $query=mysqli_query($conn,$sql);
+        $num=mysqli_fetch_array($query);
+
+        if($num>0)
+            {
+            $_SESSION['email_system'] = $email;
+            $_SESSION['password_system'] = $password;
+            $_SESSION['user_id'] = $sql['user_id'];
+            header("location:index.php");
+            exit();
+            }
+        else
+            {
+                ?>
+
+                <div class="alert alert-danger">
+                    <button data-dismiss="alert" class="close close-sm" type="button">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <div class="messages">
+                        <div>Username and/or password are incorrect!</div>
+                    </div>
+                </div>
+
+                <?php
+            }
+    }
+?>
 <body class="bg-gradient-primary">
 
     <div class="container">
@@ -41,14 +93,14 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">My System!</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" method="POST" action="login.php" >
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
+                                            <input type="email" name="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="username@gmail.com">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
+                                            <input type="password" name="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password">
                                         </div>
                                         <div class="form-group">
@@ -58,9 +110,12 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
+                                        <!-- Button Login -->
+                                        <button type="submit" name="login" class="btn btn-primary btn-user btn-block">Login</button>
+
+                                        <!-- <a href="index.html" class="btn btn-primary btn-user btn-block">
                                             Login
-                                        </a>
+                                        </a> -->
                                         <hr>
                                         <a href="index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
