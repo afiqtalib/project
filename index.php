@@ -144,7 +144,7 @@
                     <span>Tables</span></a>
             </li>
 
-            <!-- Nav Item - Add Employees -->
+            <!-- Nav Item - Employees -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
@@ -154,8 +154,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-                        <a class="collapse-item" href="emp.php">Add New Employees</a>
-                        <a class="collapse-item" href="#">List Employees</a>
+                        <a class="collapse-item" href="new_emp.php">Add New Employees</a>
+                        <a class="collapse-item" href="emp.php">List Employees</a>
                     </div>
                 </div>
             </li>

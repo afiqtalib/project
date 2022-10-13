@@ -45,7 +45,7 @@
         $password = ($_POST['password']);
         // $hashedPass = md5($password);
 
-        $sql = "SELECT * FROM users WHERE email='$email' AND password='$password' ";
+        $sql = "SELECT * FROM admin WHERE email='$email' AND password='$password' ";
         $query=mysqli_query($conn,$sql);
         $num=mysqli_fetch_array($query);
 
@@ -53,7 +53,7 @@
             {
             $_SESSION['email_system'] = $email;
             $_SESSION['password_system'] = $password;
-            $_SESSION['user_id'] = $sql['user_id'];
+            $_SESSION['admin_id'] = $sql['admin_id'];
             header("location:index.php");
             exit();
             }
