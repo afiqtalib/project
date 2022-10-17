@@ -7,10 +7,7 @@
 	{
         //Includes
         include 'db_con.php';
-?>
-<?php
-    // include 'Includes/functions/functions.php'; 
-    include 'includes/header.php';
+        include 'includes/header.php';
 
     //Extra JS FILES
     // echo "<script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>";
@@ -38,7 +35,7 @@
         $query=mysqli_query($conn, $sql);
         if ($query){
             echo "<script>alert('You have successfully inserted the new emp data');</script>";
-            // echo "<script type='text/javascript'> document.location ='barbers.php'; </script>";
+            echo "<script type='text/javascript'> document.location ='emp.php'; </script>";
         }
         else
         {
@@ -79,19 +76,19 @@
                 <!-- FORM ADD NEW SERVICE -->
                 <form method="POST">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <div class="form-group">
                                 <label for="emp_name">Employee Name</label>
                                 <input type="text" class="form-control"  placeholder="Employee Name" name="emp_name" required="true">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="emp_phonenum">Phone Number</label>
                                 <input type="text" class="form-control" placeholder="0184254524" name="emp_phonenum" required="true" maxlength="11" pattern="[0-9]+">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="emp_pemail">Email</label>
                                 <input type="email" class="form-control" placeholder="ali@gmail.com" name="emp_pemail" required="true">
@@ -103,7 +100,7 @@
                                 <input type="text" class="form-control"  placeholder="Address" name="emp_address" required="true">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="dept">Department</label>
                                 <select class="custom-select" name="dept_name">
@@ -114,13 +111,13 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="position">Position</label>
                                 <input type="text" class="form-control"  placeholder="Position" name="emp_position" required="true">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="status">Status</label>
                                 <select class="custom-select" name="emp_status">
@@ -130,19 +127,19 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <label for="Startwork">Start Work</label>
                                 <input type="date" class="form-control" placeholder="DD/MM/YYYY" name="start_work" required="true">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="emp_username">Email</label>
                                 <input type="text" class="form-control" placeholder="pmsb.name" name="emp_email" required="true">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="emp_password">Password</label>
                                 <input type="text" class="form-control" placeholder="Emp Password" value="12345" name="emp_pass" required="true">
@@ -153,7 +150,9 @@
                 
                     <!-- SUBMIT BUTTON -->
 
-                    <button type="submit" name="add_new_emp" class="btn btn-primary">Add New Employee</button>
+                    <button type="submit" name="add_new_emp" class="btn btn-success" >                            
+                        <i class="fa fa-plus"></i>  New Employee
+                    </button>
 
                 </form>
             </div>

@@ -86,7 +86,6 @@
                                     <tbody>
                                         <?php
                                             $sql = "SELECT * FROM emp";
-                                            // $sql2 = "SELECT 'emp_id', 'emp_name', 'emp_phonenum', 'emp_pemail', 'emp_address', 'dept_name', 'emp_position', 'emp_status', 'start_work', 'emp_email', 'emp_pass' FROM 'emp'";
                                             $result = mysqli_query($conn, $sql);
                                             $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -106,15 +105,6 @@
                                             <td> <?php echo $emp['emp_pass'];?> </td>                                            
                                         </tr>
                                         <?php } ?>
-
-                                        <!-- <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>$170,750</td>
-                                        </tr> -->
                                         
                                     </tbody>
                                 </table>
