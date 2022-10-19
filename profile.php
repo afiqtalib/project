@@ -14,11 +14,12 @@
 ?>
 
 <?php 
-    $errorMessage = "error inserted";
-    $successMessage = "successfully inseertt data";
+    error_reporting(0); 
+    $statusMessage = '';
+    $targetDir = "uploads/";
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit_profile'])) {
-        $id = $_GET["emp_id"];
+        $emp_id = $_GET["emp_id"];
         $emp_name = $_POST["emp_name"];
         $emp_phonenum = $_POST["emp_phonenum"];
         $emp_pemail = $_POST["emp_pemail"];
@@ -30,12 +31,44 @@
         $emp_email = $_POST["emp_email"];
         $emp_pass =$_POST["emp_pass"];
 
+        if (!empty($_FILES["upload_img"]["name"])) {
+            $file_name = basename($_FILES["upload_img"]["name"]);
+            $target_filePath = $targetDir . $file_name;
+            $file_type = pathinfo($target_filePath, PATHINFO_EXTENSION);
+
+            // Allow certain file formats
+            $allow_types = array('jpg','png','jpeg');
+            if(in_array($file_type, $allow_types)) {
+
+                // upload file/img to server 
+                if(move_uploaded_file($_FILES["upload_img"]["tmp_name"], $target_filePath)) {
+                    $sql = "INSERT INTO emp (emp_img) VALUES $file_name WHERE emp_id='$emp_id' ";
+                    $query = mysqli_query($conn, $sql);
+
+                    if($query) {
+                        $statusMessage = "The file/image " .$file_name. " has been uploaded successfully";
+                    }
+                    else {
+                        $statusMessage = "The file/image has been uploaded failedd!!";
+                    } 
+                }
+                else {
+                    $statusMessage = "Error upload the files/images";
+                }
+            }
+            else {
+                $statusMessage = "Sorry!!! The file/image only JPG JPEG PNG";
+            }
+        }
+        else {
+            $statusMessage = "Select a file / image to upload!";
+        }
         
         // QUERY FOR ADD NEW SERVICE TO DATABASE
-        $sql = "UPDATE emp (emp_name, emp_phonenum, emp_pemail, emp_address, dept_name, emp_position, emp_status, start_work, emp_email, emp_pass) VALUE ('$emp_name', '$emp_phonenum', '$emp_pemail', '$emp_address', '$dept_name', '$emp_position', '$emp_status', '$start_work', '$emp_email', '$emp_pass' )";
+        $sql = "UPDATE emp SET emp_name='$emp_name', emp_phonenum='$emp_phonenum', emp_pemail='$emp_pemail', emp_address='$emp_address', dept_name='$dept_name', emp_position='$emp_position', emp_status='$emp_status', start_work='$start_work', emp_email='$emp_email', emp_pass='$emp_pass' WHERE emp_id='$emp_id' ";
         $query=mysqli_query($conn, $sql);
         if ($query){
-            echo "<script>alert('You have successfully inserted the new emp data');</script>";
+            echo "<script>alert('DATA ARE UPDATED');</script>";
             echo "<script type='text/javascript'> document.location ='emp.php'; </script>";
         }
         else
@@ -75,48 +108,59 @@
                 
                 <!-- FORM ADD NEW SERVICE -->
                 <form method="POST">
+                    <?php
+                        $emp_id = $_GET["emp_id"];
+                        $ret=mysqli_query($conn,"SELECT * FROM emp WHERE emp_id='$emp_id'");
+                        while ($row=mysqli_fetch_array($ret)) {
+                    ?>
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
                                 <label for="emp_name">Employee Name</label>
-                                <input type="text" class="form-control"  placeholder="Employee Name" name="emp_name" required="true">
+                                <input type="text" value="<?php echo $row['emp_name']; ?>"class="text-dark form-control"  placeholder="Employee Name" name="emp_name" required="true">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="emp_phonenum">Phone Number</label>
-                                <input type="text" class="form-control" placeholder="0184254524" name="emp_phonenum" required="true" maxlength="11" pattern="[0-9]+">
+                                <input type="text" value="<?php echo $row['emp_phonenum']; ?>" class="form-control" placeholder="0184254524" name="emp_phonenum" required="true" maxlength="11" pattern="[0-9]+">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="emp_pemail">Email</label>
-                                <input type="email" class="form-control" placeholder="ali@gmail.com" name="emp_pemail" required="true">
+                                <input type="email" value="<?php echo $row['emp_pemail']; ?>" class="form-control" placeholder="ali@gmail.com" name="emp_pemail" required="true">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="address">Address</label>
-                                <input type="text" class="form-control"  placeholder="Address" name="emp_address" required="true">
+                                <input type="text" value="<?php echo $row['emp_address']; ?>" class="form-control"  placeholder="Address" name="emp_address" required="true">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="dept">Department</label>
                                 <select class="custom-select" name="dept_name">
+                                    <option value="<?php echo $row['dept_name']; ?>" ><?php echo $row['dept_name']; ?></option>
                                     <option value="Creative & Design">Creative & Design</option>
+                                    <option value="IT & Web Development">IT</option>
+                                    <option value="Human Resources">Human Resources</option>
+                                    <option value="Marketing">Marketing</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="position">Position</label>
-                                <input type="text" class="form-control"  placeholder="Position" name="emp_position" required="true">
+                                <input type="text" value="<?php echo $row['emp_position']; ?>" class="form-control"  placeholder="Position" name="emp_position" required="true">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="status">Status</label>
                                 <select class="custom-select" name="emp_status">
+                                    <option value="<?php echo $row['emp_status'];?>" ><?php echo $row['emp_status']; ?></option>
                                     <option value="Full-Time">Full-Time</option>
                                     <option value="Contract">Contract</option>
                                     <option value="Intern">Intern</option>
@@ -126,28 +170,35 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="Startwork">Start Work</label>
-                                <input type="date" class="form-control" placeholder="DD/MM/YYYY" name="start_work" required="true">
+                                <input type="date" value="<?php echo $row['start_work']; ?>" class="form-control" placeholder="DD/MM/YYYY" name="start_work" required="true">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="emp_username">Email</label>
-                                <input value="pmsb.afiq@gmail.com" class="form-control" placeholder="pmsb.name" name="emp_email" required="true">
+                                <input type="text" value="<?php echo $row['emp_email']; ?>" class="form-control" placeholder="pmsb.name" name="emp_email" required="true">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="emp_password">Password</label>
-                                <input type="text" class="form-control" placeholder="Emp Password" value="12345" name="emp_pass" required="true">
+                                <input type="text" value="<?php echo $row['emp_pass']; ?>"class="form-control" placeholder="Emp Password" value="12345" name="emp_pass" required="true">
                             </div>
                         </div>
-
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="emp_name">Upload Image</label>
+                                <input type="file" class="form-control"  placeholder="" name="upload_img">
+                            </div>
+                        </div> 
+                        
+                        <?php } ?> 
                     </div>
                 
                     <!-- SUBMIT BUTTON -->
 
                     <button type="submit" name="edit_profile" class="btn btn-success" >                            
-                        <i class="fa fa-plus"></i>Edit profile
+                        <i class="fa fa-plus"></i>  Edit profile
                     </button>
 
                 </form>

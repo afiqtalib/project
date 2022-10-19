@@ -96,7 +96,7 @@
 
                 <!-- Message upload files/images -->
                 <?php   if(!empty($statusMessage)) { ?>
-                    <p class="text-danger font-weight-bold"> <?php echo $statusMessage ?></p>
+                    <p class="text-light text-center bg-danger font-weight-bold border border-danger rounded-pill shadow-sm py-4"> <?php echo $statusMessage ?></p>
                 <?php }  ?>
 
                 <!-- FORM ADD NEW SERVICE -->
@@ -105,7 +105,7 @@
                         <div class="col-md-5">
                             <div class="form-group">
                                 <label for="emp_name">Image Name</label>
-                                <input type="text" class="form-control"  placeholder="Enter your file name" name="img_name" required="true">
+                                <input type="text" class="form-control"  placeholder="Enter your file name" name="img_name">
                             </div>
                         </div>                        
                         <div class="col-md-6">
