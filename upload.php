@@ -13,16 +13,16 @@
 <?php 
     error_reporting(0); 
     $statusMessage = '';
-    $targetDir = ".uploads/.";
+    // $targetDir = ".uploads/.";
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['upload'])) {
         if (!empty($_FILES["upload_img"]["name"])) {
-            $file_name = basename($_FILES["upload_img"]["name"]);
-            $target_filePath = $targetDir . $file_name;
+            $filename = basename($_FILES["upload_img"]["name"]);
+            $target_filePath = $targetDir . $filename;
             $file_type = pathinfo($target_filePath, PATHINFO_EXTENSION);
 
             // Allow certain file formats
-            $allow_types = array('jpg','png','jpeg');
+            $allow_types = array('jpg','png','jpeg','pdf');
             if(in_array($file_type, $allow_types)) {
 
                 // upload file/img to server 
@@ -31,7 +31,7 @@
                     $query = mysqli_query($conn, $sql);
 
                     if($query) {
-                        $statusMessage = "The file/image " .$file_name. " has been uploaded successfully";
+                        $statusMessage = "The file/image " .$filename. " has been uploaded successfully";
                     }
                     else {
                         $statusMessage = "The file/image has been uploaded failedd!!";
@@ -58,11 +58,12 @@
         // mysqli_query($conn, $sql);
 
         // Now let's move the uploaded image into the folder: image
-    //     if (move_uploaded_file($tempname, $folder)) {
-    //         echo "<h3>  Image uploaded successfully!</h3>";
-    //     } else {
-    //         echo "<h3>  Failed to upload image!</h3>";
-    //     }       
+        // if (move_uploaded_file($tempname, $folder)) {
+        //     $statusMessage = "The file/image has been uploaded Successfully";
+        // } 
+        // else {
+        //     $statusMessage = "The file/image has been uploaded failedd!!";
+        // }       
     }
 ?>
 
@@ -92,10 +93,12 @@
                 <h6 class="m-0 font-weight-bold text-primary">Add New Files</h6>
             </div>
             <div class="card-body">
-                
+
+                <!-- Message upload files/images -->
                 <?php   if(!empty($statusMessage)) { ?>
-                    <p class="text-danger"> <?php echo $statusMessage ?></p>
+                    <p class="text-danger font-weight-bold"> <?php echo $statusMessage ?></p>
                 <?php }  ?>
+
                 <!-- FORM ADD NEW SERVICE -->
                 <form method="POST" action="upload.php" enctype="multipart/form-data">
                     <div class="row">
@@ -115,7 +118,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <div class="form-group">
                                 <label for="emp_name">Image has been uploaded</label>
                                     <?php
@@ -126,7 +129,7 @@
                                         ?>
                                             <br>
                                             <?php echo $data['id']; ?>
-                                            <img style="width: 80%;" class="center" src="./uploads/<?php echo $data['file_name']; ?>">
+                                            <img style="width: 100%;" class="center" src="./uploads/<?php echo $data['filename']; ?>">
                                             <br><hr><br>
                                         <?php
                                         }
