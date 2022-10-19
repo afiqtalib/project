@@ -13,7 +13,7 @@
 <?php 
     error_reporting(0); 
     $statusMessage = '';
-    $targetDir = ".uploads/.";
+    $targetDir = "uploads/";
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['upload'])) {
         if (!empty($_FILES["upload_img"]["name"])) {
@@ -105,13 +105,13 @@
                         <div class="col-md-5">
                             <div class="form-group">
                                 <label for="emp_name">Image Name</label>
-                                <!-- <input type="text" class="form-control"  placeholder="Enter your file name" name="img_name" required="true"> -->
+                                <input type="text" class="form-control"  placeholder="Enter your file name" name="img_name" required="true">
                             </div>
                         </div>                        
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="emp_name">Upload File</label>
-                                <input type="file" class="form-control"  placeholder="" name="upload_img" required="true">
+                                <label for="emp_name">Upload File/Image</label>
+                                <input type="file" class="form-control"  placeholder="" name="upload_img">
                             </div>
                         </div>     
                         
@@ -120,7 +120,7 @@
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label for="emp_name">Image has been uploaded</label>
+                                <label for="emp_name">File/Image has been uploaded</label>
                                     <?php
                                         $query = " SELECT * FROM image ";
                                         $result = mysqli_query($conn, $query);
@@ -129,7 +129,7 @@
                                         ?>
                                             <br>
                                             <?php echo $data['id']; ?>
-                                            <img style="width: 100%;" class="center" src="./uploads/<?php echo $data['filename']; ?>">
+                                            <img style="width: 50%;" class="center" src="./uploads/<?php echo $data['filename']; ?>">
                                             <br><hr><br>
                                         <?php
                                         }
@@ -137,6 +137,7 @@
                             </div>
                         </div> 
                     </div>
+
                     <!-- SUBMIT BUTTON -->
 
                     <button type="submit" name="upload" class="btn btn-success" >                            

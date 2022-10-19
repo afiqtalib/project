@@ -67,6 +67,7 @@
                                             <th>Start date</th>
                                             <th>Email Work</th>
                                             <th>Password</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -81,6 +82,7 @@
                                             <th>Start date</th>
                                             <th>Email Work</th>
                                             <th>Password</th>
+                                            <th>Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -102,7 +104,16 @@
                                             <td> <?php echo $emp['emp_status'];?> </td>
                                             <td> <?php echo $emp['start_work'];?> </td>
                                             <td> <?php echo $emp['emp_email'];?> </td>
-                                            <td> <?php echo $emp['emp_pass'];?> </td>                                            
+                                            <td> <?php echo $emp['emp_pass'];?> </td>   
+                                            <td>
+                                                <li class="list-inline-item" data-toggle="tooltip" title="Edit">
+                                                    <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="modal" data-target="#" data-placement="top">
+                                                        <a href="profile.php?emp_id=<?php echo $emp['emp_id']; ?> " style="color: white;">
+                                                            <i class="fa-brands fa-github-square"></i>
+                                                        </a>
+                                                    </button>
+                                                </li>
+                                            </td>                                         
                                         </tr>
                                         <?php } ?>
                                         
