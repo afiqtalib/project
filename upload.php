@@ -13,7 +13,7 @@
 <?php 
     error_reporting(0); 
     $statusMessage = '';
-    $targetDir = "uploads/";
+    $targetDir = ".uploads/.";
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['upload'])) {
         if (!empty($_FILES["upload_img"]["name"])) {
@@ -22,16 +22,16 @@
             $file_type = pathinfo($target_filePath, PATHINFO_EXTENSION);
 
             // Allow certain file formats
-            $allow_types = array('jpg','png','jpeg','pdf');
+            $allow_types = array('jpg','png','jpeg');
             if(in_array($file_type, $allow_types)) {
 
                 // upload file/img to server 
-                if(move_uploaded_file($_FILES["upload_img"]["name"], $target_filePath)) {
+                if(move_uploaded_file($_FILES["upload_img"]["tmp_name"], $target_filePath)) {
                     $sql = "INSERT INTO image (filename) VALUES ('$filename')";
                     $query = mysqli_query($conn, $sql);
 
                     if($query) {
-                        $statusMessage = "The file/image" .$file_name. "has been uploaded successfully";
+                        $statusMessage = "The file/image " .$file_name. " has been uploaded successfully";
                     }
                     else {
                         $statusMessage = "The file/image has been uploaded failedd!!";
@@ -42,7 +42,7 @@
                 }
             }
             else {
-                $statusMessage = "The file/image only JPG JPEG PDF PNG";
+                $statusMessage = "Sorry!!! The file/image only JPG JPEG PDF PNG";
             }
         }
         else {
@@ -90,13 +90,11 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Add New Files</h6>
-                <br>
-                <hr>
             </div>
             <div class="card-body">
                 
                 <?php   if(!empty($statusMessage)) { ?>
-                    <p class="text" ></p>
+                    <p class="text-danger"> <?php echo $statusMessage ?></p>
                 <?php }  ?>
                 <!-- FORM ADD NEW SERVICE -->
                 <form method="POST" action="upload.php" enctype="multipart/form-data">
@@ -117,7 +115,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="emp_name">Image has been uploaded</label>
                                     <?php
@@ -126,8 +124,10 @@
                                 
                                         while ($data = mysqli_fetch_assoc($result)) {
                                         ?>
+                                            <br>
+                                            <?php echo $data['id']; ?>
                                             <img style="width: 80%;" class="center" src="./uploads/<?php echo $data['file_name']; ?>">
-                                            <br><br>
+                                            <br><hr><br>
                                         <?php
                                         }
                                     ?>
