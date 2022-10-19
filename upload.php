@@ -11,33 +11,58 @@
 ?>
 
 <?php 
-    $errorMessage = "error inserted";
-    $successMessage = "successfully inseertt data";
+    error_reporting(0); 
+    $statusMessage = '';
+    $targetDir = "uploads/";
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['upload_file'])) {
-        $emp_name = $_POST["emp_name"];
-        $emp_phonenum = $_POST["emp_phonenum"];
-        $emp_pemail = $_POST["emp_pemail"];
-        $emp_address = $_POST["emp_address"];
-        $dept_name = $_POST["dept_name"];
-        $emp_position = $_POST["emp_position"];
-        $emp_status = $_POST["emp_status"];
-        $start_work = $_POST["start_work"];
-        $emp_email = $_POST["emp_email"];
-        $emp_pass =$_POST["emp_pass"];
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['upload'])) {
+        if (!empty($_FILES["upload_img"]["name"])) {
+            $file_name = basename($_FILES["upload_img"]["name"]);
+            $target_filePath = $targetDir . $file_name;
+            $file_type = pathinfo($target_filePath, PATHINFO_EXTENSION);
 
+            // Allow certain file formats
+            $allow_types = array('jpg','png','jpeg','pdf');
+            if(in_array($file_type, $allow_types)) {
+
+                // upload file/img to server 
+                if(move_uploaded_file($_FILES["upload_img"]["name"], $target_filePath)) {
+                    $sql = "INSERT INTO image (filename) VALUES ('$filename')";
+                    $query = mysqli_query($conn, $sql);
+
+                    if($query) {
+                        $statusMessage = "The file/image" .$file_name. "has been uploaded successfully";
+                    }
+                    else {
+                        $statusMessage = "The file/image has been uploaded failedd!!";
+                    } 
+                }
+                else {
+                    $statusMessage = "Error upload the files/images";
+                }
+            }
+            else {
+                $statusMessage = "The file/image only JPG JPEG PDF PNG";
+            }
+        }
+        else {
+            $statusMessage = "Select a file / image to upload!";
+        }
+
+        // $filename = $_FILES["upload_img"]["name"];
+        // $tempname = $_FILES["upload_img"]["tmp_name"];
+        // $folder = "./uploads/" . $filename;
         
         // QUERY FOR ADD NEW SERVICE TO DATABASE
-        $sql = "INSERT INTO emp (emp_name, emp_phonenum, emp_pemail, emp_address, dept_name, emp_position, emp_status, start_work, emp_email, emp_pass) VALUE ('$emp_name', '$emp_phonenum', '$emp_pemail', '$emp_address', '$dept_name', '$emp_position', '$emp_status', '$start_work', '$emp_email', '$emp_pass' )";
-        $query=mysqli_query($conn, $sql);
-        if ($query){
-            echo "<script>alert('You have successfully uploaded the new file');</script>";
-            // echo "<script type='text/javascript'> document.location ='barbers.php'; </script>";
-        }
-        else
-        {
-          echo "<script>alert('Something Went Wrong. Please try again');</script>";
-        }
+        // $sql = "INSERT INTO image (filename) VALUES ('$filename')";
+        // mysqli_query($conn, $sql);
+
+        // Now let's move the uploaded image into the folder: image
+    //     if (move_uploaded_file($tempname, $folder)) {
+    //         echo "<h3>  Image uploaded successfully!</h3>";
+    //     } else {
+    //         echo "<h3>  Failed to upload image!</h3>";
+    //     }       
     }
 ?>
 
@@ -70,22 +95,48 @@
             </div>
             <div class="card-body">
                 
+                <?php   if(!empty($statusMessage)) { ?>
+                    <p class="text" ></p>
+                <?php }  ?>
                 <!-- FORM ADD NEW SERVICE -->
-                <form method="POST" action="upload.php" enctype="multipart">
+                <form method="POST" action="upload.php" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label for="emp_name">File Name</label>
-                                <input type="text" class="form-control"  placeholder="Enter your file name" name="file_name" required="true">
+                                <label for="emp_name">Image Name</label>
+                                <!-- <input type="text" class="form-control"  placeholder="Enter your file name" name="img_name" required="true"> -->
                             </div>
                         </div>                        
-                    
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="emp_name">Upload File</label>
+                                <input type="file" class="form-control"  placeholder="" name="upload_img" required="true">
+                            </div>
+                        </div>     
                         
                     </div>
-            
+
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label for="emp_name">Image has been uploaded</label>
+                                    <?php
+                                        $query = " SELECT * FROM image ";
+                                        $result = mysqli_query($conn, $query);
+                                
+                                        while ($data = mysqli_fetch_assoc($result)) {
+                                        ?>
+                                            <img style="width: 80%;" class="center" src="./uploads/<?php echo $data['file_name']; ?>">
+                                            <br><br>
+                                        <?php
+                                        }
+                                    ?>
+                            </div>
+                        </div> 
+                    </div>
                     <!-- SUBMIT BUTTON -->
 
-                    <button type="submit" name="upload_file" class="btn btn-success" >                            
+                    <button type="submit" name="upload" class="btn btn-success" >                            
                         <i class="fa fa-plus"></i>  Upload File
                     </button>
 
@@ -102,7 +153,7 @@
 
 <?php  
         include 'includes/footer.php';
-}
+    }
 	else
     {
     	header('Location: login.php');
