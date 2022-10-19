@@ -13,12 +13,12 @@
 <?php 
     error_reporting(0); 
     $statusMessage = '';
-    // $targetDir = ".uploads/.";
+    $targetDir = ".uploads/.";
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['upload'])) {
         if (!empty($_FILES["upload_img"]["name"])) {
-            $filename = basename($_FILES["upload_img"]["name"]);
-            $target_filePath = $targetDir . $filename;
+            $file_name = basename($_FILES["upload_img"]["name"]);
+            $target_filePath = $targetDir . $file_name;
             $file_type = pathinfo($target_filePath, PATHINFO_EXTENSION);
 
             // Allow certain file formats
@@ -27,11 +27,11 @@
 
                 // upload file/img to server 
                 if(move_uploaded_file($_FILES["upload_img"]["tmp_name"], $target_filePath)) {
-                    $sql = "INSERT INTO image (filename) VALUES ('$filename')";
+                    $sql = "INSERT INTO image (filename) VALUES ('$file_name')";
                     $query = mysqli_query($conn, $sql);
 
                     if($query) {
-                        $statusMessage = "The file/image " .$filename. " has been uploaded successfully";
+                        $statusMessage = "The file/image " .$file_name. " has been uploaded successfully";
                     }
                     else {
                         $statusMessage = "The file/image has been uploaded failedd!!";
