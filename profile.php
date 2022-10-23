@@ -16,13 +16,14 @@
 <?php 
     error_reporting(0); 
     $statusMessage = '';
-    $targetDir = "uploads/";
+    $targetDir = "uploads/employees";
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit_profile'])) {
         $emp_id = $_GET["emp_id"];
         $emp_name = $_POST["emp_name"];
         $emp_phonenum = $_POST["emp_phonenum"];
         $emp_pemail = $_POST["emp_pemail"];
+        $emp_age = $_POST["emp_age"];
         $emp_address = $_POST["emp_address"];
         $dept_name = $_POST["dept_name"];
         $emp_position = $_POST["emp_position"];
@@ -31,8 +32,8 @@
         $emp_email = $_POST["emp_email"];
         $emp_pass =$_POST["emp_pass"];
 
-        if (!empty($_FILES["upload_img"]["name"])) {
-            $file_name = basename($_FILES["upload_img"]["name"]);
+        if (!empty($_FILES["emp_img"]["name"])) {
+            $file_name = basename($_FILES["emp_img"]["name"]);
             $target_filePath = $targetDir . $file_name;
             $file_type = pathinfo($target_filePath, PATHINFO_EXTENSION);
 
@@ -41,8 +42,8 @@
             if(in_array($file_type, $allow_types)) {
 
                 // upload file/img to server 
-                if(move_uploaded_file($_FILES["upload_img"]["tmp_name"], $target_filePath)) {
-                    $sql = "INSERT INTO emp (emp_img) VALUES $file_name WHERE emp_id='$emp_id' ";
+                if(move_uploaded_file($_FILES["emp_img"]["tmp_name"], $target_filePath)) {
+                    $sql = "UPDATE emp SET emp_name='$emp_name', emp_phonenum='$emp_phonenum', emp_pemail='$emp_pemail', emp_age='$emp_age', emp_address='$emp_address', dept_name='$dept_name', emp_position='$emp_position', emp_status='$emp_status', start_work='$start_work', emp_email='$emp_email', emp_pass='$emp_pass', emp_img='$file_name' WHERE emp_id='$emp_id' ";
                     $query = mysqli_query($conn, $sql);
 
                     if($query) {
@@ -63,18 +64,9 @@
         else {
             $statusMessage = "Select a file / image to upload!";
         }
-        
-        // QUERY FOR ADD NEW SERVICE TO DATABASE
-        $sql = "UPDATE emp SET emp_name='$emp_name', emp_phonenum='$emp_phonenum', emp_pemail='$emp_pemail', emp_address='$emp_address', dept_name='$dept_name', emp_position='$emp_position', emp_status='$emp_status', start_work='$start_work', emp_email='$emp_email', emp_pass='$emp_pass' WHERE emp_id='$emp_id' ";
-        $query=mysqli_query($conn, $sql);
-        if ($query){
-            echo "<script>alert('DATA ARE UPDATED');</script>";
-            echo "<script type='text/javascript'> document.location ='emp.php'; </script>";
-        }
-        else
-        {
-          echo "<script>alert('Something Went Wrong. Please try again');</script>";
-        }
+    }
+    else {
+        $statusMessage = "ERROR";
     }
 ?>
 
@@ -114,13 +106,13 @@
                         while ($row=mysqli_fetch_array($ret)) {
                     ?>
                     <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="emp_name">Employee Name</label>
                                 <input type="text" value="<?php echo $row['emp_name']; ?>"class="text-dark form-control"  placeholder="Employee Name" name="emp_name" required="true">
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <label for="emp_phonenum">Phone Number</label>
                                 <input type="text" value="<?php echo $row['emp_phonenum']; ?>" class="form-control" placeholder="0184254524" name="emp_phonenum" required="true" maxlength="11" pattern="[0-9]+">
@@ -130,6 +122,12 @@
                             <div class="form-group">
                                 <label for="emp_pemail">Email</label>
                                 <input type="email" value="<?php echo $row['emp_pemail']; ?>" class="form-control" placeholder="ali@gmail.com" name="emp_pemail" required="true">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="emp_age">Age</label>
+                                <input type="number" value="<?php echo $row['emp_age']; ?>" class="form-control" placeholder="Enter employee age" name="emp_age" required="true" maxlength="2" pattern="[1-9]+">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -156,7 +154,7 @@
                                 <input type="text" value="<?php echo $row['emp_position']; ?>" class="form-control"  placeholder="Position" name="emp_position" required="true">
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="status">Status</label>
                                 <select class="custom-select" name="emp_status">
@@ -179,16 +177,16 @@
                                 <input type="text" value="<?php echo $row['emp_email']; ?>" class="form-control" placeholder="pmsb.name" name="emp_email" required="true">
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <label for="emp_password">Password</label>
-                                <input type="text" value="<?php echo $row['emp_pass']; ?>"class="form-control" placeholder="Emp Password" value="12345" name="emp_pass" required="true">
+                                <input type="text" value="<?php echo $row['emp_pass'];?>" class="form-control" placeholder="Emp Password" value="12345" name="emp_pass" required="true">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="emp_name">Upload Image</label>
-                                <input type="file" class="form-control"  placeholder="" name="upload_img">
+                                <input type="file" class="form-control"  placeholder="" name="emp_img">
                             </div>
                         </div> 
                         

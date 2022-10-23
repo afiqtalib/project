@@ -21,6 +21,7 @@
         $emp_name = $_POST["emp_name"];
         $emp_phonenum = $_POST["emp_phonenum"];
         $emp_pemail = $_POST["emp_pemail"];
+        $emp_age = $_POST["emp_age"];
         $emp_address = $_POST["emp_address"];
         $dept_name = $_POST["dept_name"];
         $emp_position = $_POST["emp_position"];
@@ -30,8 +31,8 @@
         $emp_pass =$_POST["emp_pass"];
 
         
-        // QUERY FOR ADD NEW SERVICE TO DATABASE
-        $sql = "INSERT INTO emp (emp_name, emp_phonenum, emp_pemail, emp_address, dept_name, emp_position, emp_status, start_work, emp_email, emp_pass) VALUE ('$emp_name', '$emp_phonenum', '$emp_pemail', '$emp_address', '$dept_name', '$emp_position', '$emp_status', '$start_work', '$emp_email', '$emp_pass' )";
+        // QUERY FOR ADD NEW EMPLOYEES TO DATABASE
+        $sql = "INSERT INTO emp (emp_name, emp_phonenum, emp_pemail, emp_age, emp_address, dept_name, emp_position, emp_status, start_work, emp_email, emp_pass) VALUE ('$emp_name', '$emp_phonenum', '$emp_pemail', '$emp_age', '$emp_address', '$dept_name', '$emp_position', '$emp_status', '$start_work', '$emp_email', '$emp_pass' )";
         $query=mysqli_query($conn, $sql);
         if ($query){
             echo "<script>alert('You have successfully inserted the new emp data');</script>";
@@ -76,13 +77,13 @@
                 <!-- FORM ADD NEW SERVICE -->
                 <form method="POST">
                     <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="emp_name">Employee Name</label>
-                                <input type="text" class="form-control"  placeholder="Employee Name" name="emp_name" required="true">
+                                <input type="text" class="form-control"  placeholder="Enter Employee Name" name="emp_name" required="true">
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <label for="emp_phonenum">Phone Number</label>
                                 <input type="text" class="form-control" placeholder="0184254524" name="emp_phonenum" required="true" maxlength="11" pattern="[0-9]+">
@@ -94,16 +95,23 @@
                                 <input type="email" class="form-control" placeholder="ali@gmail.com" name="emp_pemail" required="true">
                             </div>
                         </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="emp_age">Age</label>
+                                <input type="number" class="form-control" placeholder="Enter employee age" name="emp_age" required="true" maxlength="2" pattern="[1-9]+">
+                            </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="address">Address</label>
-                                <input type="text" class="form-control"  placeholder="Address" name="emp_address" required="true">
+                                <input type="text" class="form-control"  placeholder="Enter employee address" name="emp_address" required="true">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="dept">Department</label>
                                 <select class="custom-select" name="dept_name">
+                                    <option value="">Select Department</option>
                                     <option value="Creative & Design">Creative & Design</option>
                                     <option value="IT & Web Development">IT</option>
                                     <option value="Human Resources">Human Resources</option>
@@ -114,13 +122,14 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="position">Position</label>
-                                <input type="text" class="form-control"  placeholder="Position" name="emp_position" required="true">
+                                <input type="text" class="form-control"  placeholder="Enter employee position" name="emp_position" required="true">
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="status">Status</label>
                                 <select class="custom-select" name="emp_status">
+                                    <option value="">Select employee status</option>
                                     <option value="Full-Time">Full-Time</option>
                                     <option value="Contract">Contract</option>
                                     <option value="Intern">Intern</option>
@@ -136,13 +145,13 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="emp_username">Email</label>
-                                <input type="text" class="form-control" placeholder="pmsb.name" name="emp_email" required="true">
+                                <input type="text" class="form-control" placeholder="pmsb.name@gmail.com" name="emp_email" required="true">
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <label for="emp_password">Password</label>
-                                <input type="text" class="form-control" placeholder="Emp Password" value="12345" name="emp_pass" required="true">
+                                <input type="text" class="form-control" placeholder="Employee Password" value="12345" name="emp_pass" required="true">
                             </div>
                         </div>
 

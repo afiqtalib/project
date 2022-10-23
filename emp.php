@@ -61,12 +61,14 @@
                                             <th>Name</th>
                                             <th>Phone Number</th>
                                             <th>Personal Email</th>
+                                            <th>Age</th>
                                             <th>Department</th>
                                             <th>Position</th>
                                             <th>Status</th>
                                             <th>Start date</th>
                                             <th>Email Work</th>
                                             <th>Password</th>
+                                            <th>Img</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -76,12 +78,14 @@
                                             <th>Name</th>
                                             <th>Phone Number</th>
                                             <th>Personal Email</th>
+                                            <th>Age</th>
                                             <th>Department</th>
                                             <th>Position</th>
                                             <th>Status</th>
                                             <th>Start date</th>
                                             <th>Email Work</th>
                                             <th>Password</th>
+                                            <th>Img</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -99,17 +103,19 @@
                                             <td> <?php echo $emp['emp_name'];?> </td>
                                             <td> <?php echo $emp['emp_phonenum'];?> </td>
                                             <td> <?php echo $emp['emp_pemail'];?> </td>
+                                            <td> <?php echo $emp['emp_age'];?> </td>
                                             <td> <?php echo $emp['dept_name'];?> </td>
                                             <td> <?php echo $emp['emp_position'];?> </td>
                                             <td> <?php echo $emp['emp_status'];?> </td>
                                             <td> <?php echo $emp['start_work'];?> </td>
                                             <td> <?php echo $emp['emp_email'];?> </td>
-                                            <td> <?php echo $emp['emp_pass'];?> </td>   
+                                            <td> <?php echo $emp['emp_pass'];?> </td>
+                                            <td> <img style="width: 50%;" class="center" src="./uploads/employees<?php echo $emp['emp_img']; ?>"> </td>     
                                             <td>
-                                                <li class="list-inline-item" data-toggle="tooltip" title="Edit">
-                                                    <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="modal" data-target="#" data-placement="top">
+                                                <li class="list-inline-item"  data-toggle="tooltip" title="Edit profile">
+                                                    <button class="btn btn-success btn-sm rounded-10" type="button" data-toggle="modal" data-target="#" data-placement="top">
                                                         <a href="profile.php?emp_id=<?php echo $emp['emp_id']; ?> " style="color: white;">
-                                                            <i class="fa-brands fa-github-square"></i>
+                                                            <i class="fas fa-edit fa-lg"></i>
                                                         </a>
                                                     </button>
                                                 </li>

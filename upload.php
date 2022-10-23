@@ -46,7 +46,7 @@
             }
         }
         else {
-            $statusMessage = "Select a file / image to upload!";
+            $statusMessage = "Fill the form & Select a file / image to upload!";
         }
 
         // $filename = $_FILES["upload_img"]["name"];
@@ -117,7 +117,7 @@
                         
                     </div>
 
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
                                 <label for="emp_name">File/Image has been uploaded</label>
@@ -136,6 +136,28 @@
                                     ?>
                             </div>
                         </div> 
+                    </div> -->
+
+                    <div class="grid-container">
+                        <div class="section_heading">
+                            <h5 style="color: blue; ">File/Image has been uploaded</h5>
+                        </div>
+                        <div class="row m-3">
+                            <?php
+                                $sql = "SELECT * FROM image";
+                                $result = mysqli_query($conn, $sql);
+                                while ($data =  mysqli_fetch_assoc($result)) {
+                            ?>
+                                <div class="card col-3 border-info shadow-lg mr-3 mt-3 flex-flow bg-success">
+                                    <img src="./uploads/<?php echo $data['filename']; ?>" class="card-img-top rounded p-3 mx-auto d-block" alt="Team Member" style="width: 70%;">
+                                    <div class="card-body text-center text-dark">
+                                        <h6 class="card-title text-light"> <?php echo $data ['id'];?> </h6>
+                                        <hr style="color: white;">
+                                        <p class="card-text text-light"><?php echo $data ['filename'];?> </p>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
                     </div>
 
                     <!-- SUBMIT BUTTON -->
