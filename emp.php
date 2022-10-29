@@ -53,6 +53,11 @@
                             <h6 class="m-0 font-weight-bold text-primary">Employees</h6>
                         </div>
                         <div class="card-body">
+                            <!-- ADD NEW SERVICE BUTTON -->
+                            <a href="new_emp.php" class="btn btn-success btn-md" style="margin-bottom: 10px;">
+                                <i class="fa fa-user-plus"></i> 
+                                Add New Emp
+                            </a>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -115,7 +120,7 @@
                                                 <li class="list-inline-item"  data-toggle="tooltip" title="Edit profile">
                                                     <button class="btn btn-success btn-sm rounded-10" type="button" data-toggle="modal" data-target="#" data-placement="top">
                                                         <a href="profile.php?emp_id=<?php echo $emp['emp_id']; ?> " style="color: white;">
-                                                            <i class="fas fa-edit fa-lg"></i>
+                                                            <i class="fas 	fa-user-edit fa-lg "></i>
                                                         </a>
                                                     </button>
                                                 </li>

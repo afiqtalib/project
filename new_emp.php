@@ -159,9 +159,13 @@
                 
                     <!-- SUBMIT BUTTON -->
 
-                    <button type="submit" name="add_new_emp" class="btn btn-success" >                            
+                    <button type="submit" name="add_new_emp" class="btn btn-success mr-2" >                            
                         <i class="fa fa-plus"></i>  New Employee
-                    </button>
+                    </button>   
+                    <a href="emp.php" class="btn btn-warning btn-md" style="">
+                        <i class="fa fa-user-alt-slash"></i> 
+                        Cancel
+                    </a>
 
                 </form>
             </div>
