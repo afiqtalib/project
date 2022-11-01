@@ -148,7 +148,7 @@
                                 $result = mysqli_query($conn, $sql);
                                 while ($data =  mysqli_fetch_assoc($result)) {
                             ?>
-                                <div class="card col-3 border-info shadow-lg mr-3 mt-3 flex-flow bg-success">
+                                <div class="card col-3 border-info shadow-lg mr-3 mt-3 flex-flow bg-gradient-primary">
                                     <img src="./uploads/<?php echo $data['filename']; ?>" class="card-img-top rounded p-3 mx-auto d-block" alt="Team Member" style="width: 70%;">
                                     <div class="card-body text-center text-dark">
                                         <h6 class="card-title text-light"> <?php echo $data ['id'];?> </h6>

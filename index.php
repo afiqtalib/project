@@ -237,7 +237,7 @@
                                     <div class="card bg-primary text-white shadow">
                                         <div class="card-body">
                                             Primary
-                                            <div class="text-white-50 small">#4E73DF</div>
+                                            <div class="text-white-50 small">#081221</div>
                                         </div>
                                     </div>
                                 </div>
