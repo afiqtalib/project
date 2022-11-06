@@ -78,11 +78,11 @@
                         
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="dept">Department</label>
+                                <label for="dept">Type of Leave</label>
                                 <select class="custom-select" name="dept_name">
                                     <option value="">Choose Type of Leave</option>
                                     <option value="">Sakit (MC)</option>
-                                    <option value="Creative & Design">Cuti Tahunan</option>
+                                    <option value="">Cuti Tahunan</option>
                                     <option value="">Emergency Leave</option>
                                     <option value="">Tanpa Gaji</option>
                                 </select>
@@ -103,14 +103,14 @@
                             </div>
                         </div>
 
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="emp_age">Duration</label>
                                 <input type="number" class="form-control" placeholder="Enter total days" name="emp_age" required="true" maxlength="2" pattern="[1-9]+">
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="address">Reasons</label>
                                 <input type="text" class="form-control"  placeholder="Enter Your Reason" name="emp_address" required="true" height="150px">
@@ -124,11 +124,11 @@
                         <i class="fa fa-plus"></i>  New Employee
                     </button>   
                     <br><br>
-                    <a href="login.html" class="btn btn-primary btn-user btn-block">
+                    <a href="#" class="btn btn-primary btn-user btn-block">
                         Register Account
                     </a>
                     <br><br>
-                    <a href="emp.php" class="btn btn-warning btn-md">
+                    <a href="listApp.php" class="btn btn-warning btn-md">
                         <i class="fa fa-user-alt-slash"></i> 
                         Cancel
                     </a>
