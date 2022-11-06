@@ -65,7 +65,7 @@
 
                 <!-- Nav Item - Leave Application -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="application.php">
                         <i class="fas fa-file-alt"></i>
                         <span>Leave Application</span></a>
                 </li>
