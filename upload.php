@@ -116,6 +116,12 @@
                         </div>     
                         
                     </div>
+                    <!-- SUBMIT BUTTON -->
+
+                    <button type="submit" name="upload" class="btn btn-success" >                            
+                        <i class="fa fa-plus"></i>  Upload File
+                    </button>
+                    <br><br><br>
 
                     <!-- <div class="row">
                         <div class="col-md-5">
@@ -159,12 +165,6 @@
                             <?php } ?>
                         </div>
                     </div>
-
-                    <!-- SUBMIT BUTTON -->
-
-                    <button type="submit" name="upload" class="btn btn-success" >                            
-                        <i class="fa fa-plus"></i>  Upload File
-                    </button>
 
                 </form>
             </div>

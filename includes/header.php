@@ -53,24 +53,8 @@
 
                 <!-- Heading -->
                 <div class="sidebar-heading">
-                    Interface
+                    System
                 </div>
-
-                <!-- Nav Item - Employees -->
-                <!-- <li class="nav-item">
-                    <a class="nav-link collapsed" href="emp.php" data-toggle="collapse" data-target="#collapseTwo"
-                        aria-expanded="true" aria-controls="collapseTwo">
-                        <i class="fas fa-fw fa-users"></i>
-                        <span>Employees</span>
-                    </a>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Custom Components:</h6>
-                            <a class="collapse-item" href="new_emp.php">Add New Employees</a>
-                            <a class="collapse-item" href="emp.php">List Employees</a>
-                        </div>
-                    </div>
-                </li> -->
 
                 <!-- Nav Item - Employees -->
                 <li class="nav-item">
@@ -79,12 +63,27 @@
                         <span>Employees</span></a>
                 </li>
 
-                <!-- Nav Item - Charts -->
+                <!-- Nav Item - Leave Application -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Leave Application</span></a>
+                </li>
+
+                <!-- Nav Item - Upload -->
                 <li class="nav-item">
                     <a class="nav-link" href="upload.php">
                         <i class="fas fa-fw fa-upload"></i>
                         <span>Upload Image</span></a>
                 </li>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Interface
+                </div>
 
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
