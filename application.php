@@ -56,150 +56,117 @@
 
 <body>
     <!-- Begin Page Content -->
-    <div class="container-fluid">
-    
+    <div class="container">
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Employees</h1>
+            <h1 class="h3 mb-0 text-gray-800 pl-2">Employees</h1>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fas fa-download fa-sm text-white-50"></i>
                 Generate Report
             </a>
         </div>
-        <div class="card shadow mb-4">
+
+        <div class="card o-hidden border-0 shadow-lg m-2">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Add New Employee</h6>
+                <h6 class="m-0 font-weight-bold text-primary text-center">Leave Application Form</h6>
             </div>
-            <div class="card-body">
-                
-                <!-- FORM ADD NEW SERVICE -->
-                <form method="POST">
-                    <div class="row">
-                        
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="dept">Type of Leave</label>
-                                <select class="custom-select" name="dept_name">
-                                    <option value="">Choose Type of Leave</option>
-                                    <option value="">Sakit (MC)</option>
-                                    <option value="">Cuti Tahunan</option>
-                                    <option value="">Emergency Leave</option>
-                                    <option value="">Tanpa Gaji</option>
-                                </select>
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-lg-block">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 font-weight-bold mb-4">Employee Leave Information</h1>
                             </div>
-                        </div>
+                            
+                            <!-- Balance cuti emp -->
+                            <ul class="list-group">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Cuti Sakit (MC)
+                                    <span class="badge badge-primary badge-pill">14</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Cuti Tahunan (Annual Leave)
+                                    <span class="badge badge-primary badge-pill">12</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Cuti Kecemasan (Emergency Leave)
+                                    <span class="badge badge-primary badge-pill">2</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Cuti Tanpa Gaji
+                                    <span class="badge badge-primary badge-pill">1</span>
+                                </li>
+                            </ul>
 
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="Startwork">From Date</label>
-                                <input type="date" class="form-control" placeholder="DD/MM/YYYY" name="start_work" required="true">
-                            </div>
-                        </div>
 
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="Startwork">To Date</label>
-                                <input type="date" class="form-control" placeholder="DD/MM/YYYY" name="start_work" required="true">
-                            </div>
-                        </div>
 
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="emp_age">Duration</label>
-                                <input type="number" class="form-control" placeholder="Enter total days" name="emp_age" required="true" maxlength="2" pattern="[1-9]+">
-                            </div>
-                        </div>
 
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="address">Reasons</label>
-                                <input type="text" class="form-control"  placeholder="Enter Your Reason" name="emp_address" required="true" height="150px">
-                            </div>
                         </div>
                     </div>
-                
-                    <!-- SUBMIT BUTTON -->
-
-                    <button type="submit" name="add_new_emp" class="btn btn-success mr-2" >                            
-                        <i class="fa fa-plus"></i>  New Employee
-                    </button>   
-                    <br><br>
-                    <a href="#" class="btn btn-primary btn-user btn-block">
-                        Register Account
-                    </a>
-                    <br><br>
-                    <a href="listApp.php" class="btn btn-warning btn-md">
-                        <i class="fa fa-user-alt-slash"></i> 
-                        Cancel
-                    </a>
-                </form>
-
-            </div>
-        </div>
-    </div>
-
-        <div class="container">
-            <div class="card o-hidden border-0 shadow-lg my-5">
-                <div class="card-body p-0">
-                    <!-- Nested Row within Card Body -->
-                    <div class="row">
-                        <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-                        <div class="col-lg-7">
-                            <div class="p-5">
-                                <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
-                                </div>
-                                <form class="user">
-                                    <div class="form-group row">
-                                        <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <label for="Startwork">To Date</label>
-                                            <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                                placeholder="First Name">
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <label for="Startwork">To Date</label>
-                                            <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                                placeholder="Last Name">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                            placeholder="Email Address">
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleRepeatPassword" placeholder="Repeat Password">
-                                        </div>
-                                    </div>
-                                    <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                        Register Account
-                                    </a>
-                                    <hr>
-                                    <a href="index.html" class="btn btn-google btn-user btn-block">
-                                        <i class="fab fa-google fa-fw"></i> Register with Google
-                                    </a>
-                                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                        <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                    </a>
-                                </form>
-                                <hr>
-                                <div class="text-center">
-                                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                </div>
-                                <div class="text-center">
-                                    <a class="small" href="login.html">Already have an account? Login!</a>
-                                </div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 font-weight-bold mb-4">Leave Application</h1>
                             </div>
+                            
+                            <!-- FORM ADD NEW SERVICE -->
+                            <form class="user" method="POST">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <label for="dept">Type of Leave</label>
+                                        <select class=" form-control" name="lv_type">
+                                            <option value="">Choose Type of Leave</option>
+                                            <option value="Cuti sakit">Cuti Sakit(MC)</option>
+                                            <option value="Cuti Tahunan">Cuti Tahunan</option>
+                                            <option value="Emergency Leave">Emergency Leave</option>
+                                            <option value="Tanpa Gaji">Tanpa Gaji</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="emp_age">Duration (days)</label>
+                                        <input type="number" class="form-control" placeholder="" name="duration" required="true" maxlength="2" pattern="[1-9]+">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <label for="emp_age" class="text-small">From date</label>
+                                        <input type="date" class="form-control form-control" name="from_date"
+                                            id="exampleInputPassword" placeholder="Password">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="emp_age" class="text-small">To date</label>
+                                        <input type="date" class="form-control form-control" name="to_date"
+                                            id="exampleRepeatPassword" placeholder="Repeat Password">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="emp_age" class="text-small">Reasons</label>
+                                    <textarea class="form-control form-control" name="lv_reasons" id="" cols="30" rows="2"></textarea>
+                                </div>
+
+                                <a href="#" class="btn btn-primary btn-block">
+                                    Apply
+                                </a>
+                                <a href="#" class="btn btn-facebook btn-block">
+                                    Reset
+                                </a>
+
+                            </form>
+
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="forgot-password.html">Forgot Password?</a>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </body>
 </html>
 
