@@ -3,44 +3,40 @@
     session_start();
 
 	//Check If user is already logged in
-	if(isset($_SESSION['email_system']) && isset($_SESSION['password_system']))
+	if(isset($_SESSION['email_system']) && isset($_SESSION['password_system']) && isset($_SESSION['admin_id']) ) 
 	{
         //Includes
         include 'db_con.php';
         include 'includes/header.php';
 
     //Extra JS FILES
-    // echo "<script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>";
+    echo "<script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>";
 ?>
 
 <?php 
     $errorMessage = "error inserted";
     $successMessage = "successfully inseertt data";
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_new_emp'])) {
-        $emp_name = $_POST["emp_name"];
-        $emp_phonenum = $_POST["emp_phonenum"];
-        $emp_pemail = $_POST["emp_pemail"];
-        $emp_age = $_POST["emp_age"];
-        $emp_address = $_POST["emp_address"];
-        $dept_name = $_POST["dept_name"];
-        $emp_position = $_POST["emp_position"];
-        $emp_status = $_POST["emp_status"];
-        $start_work = $_POST["start_work"];
-        $emp_email = $_POST["emp_email"];
-        $emp_pass =$_POST["emp_pass"];
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['apply'])) {
+
+        $lv_type = $_POST['lv_type'];
+        $from_date = $_POST['from_date'];
+        $to_date = $_POST['to_date'];
+        $lv_duration = $_POST['lv_duration'];
+        $lv_reasons = $_POST['lv_reasons'];
+
+        $admin_id = $_SESSION['admin_id'];
 
         
         // QUERY FOR ADD NEW EMPLOYEES TO DATABASE
-        $sql = "INSERT INTO emp (emp_name, emp_phonenum, emp_pemail, emp_age, emp_address, dept_name, emp_position, emp_status, start_work, emp_email, emp_pass) VALUE ('$emp_name', '$emp_phonenum', '$emp_pemail', '$emp_age', '$emp_address', '$dept_name', '$emp_position', '$emp_status', '$start_work', '$emp_email', '$emp_pass' )";
+        $sql = " INSERT INTO cuti (lv_type, from_date, to_date, lv_duration, lv_reasons, admin_id) VALUES ('$lv_type','$from_date','$to_date','$lv_duration','$lv_reasons','$admin_id') ";
         $query=mysqli_query($conn, $sql);
         if ($query){
-            echo "<script>alert('You have successfully inserted the new emp data');</script>";
-            echo "<script type='text/javascript'> document.location ='emp.php'; </script>";
+            echo '<script type="text/javascript">sweetAlert("Success !"," Your application is failed","success")</script>';        
         }
         else
         {
-          echo "<script>alert('Something Went Wrong. Please try again');</script>";
+            echo '<script type="text/javascript">sweetAlert("Error !"," Your application is failed","error")</script>';        
         }
     }
 ?>
@@ -66,6 +62,7 @@
             </a>
         </div>
 
+        <!-- CARD LEAVE APPLICATION -->
         <div class="card o-hidden border-0 shadow-lg m-2">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary text-center">Leave Application Form</h6>
@@ -119,13 +116,13 @@
                                             <option value="">Choose Type of Leave</option>
                                             <option value="Cuti sakit">Cuti Sakit(MC)</option>
                                             <option value="Cuti Tahunan">Cuti Tahunan</option>
-                                            <option value="Emergency Leave">Emergency Leave</option>
+                                            <option value="Cuti Kecemasan">Cuti Kecemasan</option>
                                             <option value="Tanpa Gaji">Tanpa Gaji</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="emp_age">Duration (days)</label>
-                                        <input type="number" class="form-control" placeholder="" name="duration" required="true" maxlength="2" pattern="[1-9]+">
+                                        <input type="number" class="form-control" placeholder="" name="lv_duration">
                                     </div>
                                 </div>
                                 
@@ -147,12 +144,11 @@
                                     <textarea class="form-control form-control" name="lv_reasons" id="" cols="30" rows="2"></textarea>
                                 </div>
 
-                                <a href="#" class="btn btn-primary btn-block">
-                                    Apply
-                                </a>
-                                <a href="#" class="btn btn-facebook btn-block">
-                                    Reset
-                                </a>
+
+                                <!-- Button Apply -->
+                                <button type="submit" name="apply" class="btn btn-primary btn-block">Login</button>
+
+                                <button type="reset" name="reset" class="btn btn-primary btn-block">Reset</button>
 
                             </form>
 
@@ -166,6 +162,56 @@
                 </div>
             </div>
         </div>
+
+        <!-- Collapsable Card Example -->
+        <div class="card shadow mb-4">
+            <!-- Card Header - Accordion -->
+            <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
+                role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                <h6 class="m-0 font-weight-bold text-primary">Collapsable Card Example</h6>
+            </a>
+            <!-- Card Content - Collapse -->
+            <div class="collapse show" id="collapseCardExample">
+                <div class="card-body">
+                    <div class="embed-responsive embed-responsive-4by3 rounded" style="width: 50%;">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Card Module video -->
+        <div class="card o-hidden border-0 shadow-lg m-2">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary text-center">Leave Application Form</h6>
+            </div>
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    
+                    <div class="col-lg-12">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 font-weight-bold mb-4">Leave Application</h1>
+                            </div>
+                            
+                            <div class="embed-responsive embed-responsive-4by3 rounded" style="width: 50%;">
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+</div>
+
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="forgot-password.html">Forgot Password?</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </body>
 </html>

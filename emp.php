@@ -59,7 +59,7 @@
                                 Add New Emp
                             </a>
                             <div class="table-responsive">
-                                <table class="table table-bordered hover" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -74,7 +74,7 @@
                                             <th>Start date</th>
                                             <th>Email Work</th>
                                             <th>Password</th>
-                                            <th>Img</th>
+                                            <th>Profile Img</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -92,7 +92,7 @@
                                             <th>Start date</th>
                                             <th>Email Work</th>
                                             <th>Password</th>
-                                            <th>Img</th>
+                                            <th>Profile Img</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -118,7 +118,7 @@
                                             <td> <?php echo $emp['start_work'];?> </td>
                                             <td> <?php echo $emp['emp_email'];?> </td>
                                             <td> <?php echo $emp['emp_pass'];?> </td>
-                                            <td> <img style="" class="center" src="./uploads/employees/<?php echo $emp['emp_img']; ?>"> </td>     
+                                            <td class="justify-content-center"> <img src="./uploads/employees/<?php echo $emp['emp_img']; ?>" width="100px"> </td>     
                                             <td>
                                                 <li class="list-inline-item"  data-toggle="tooltip" title="Edit profile">
                                                     <button class="btn btn-success btn-sm rounded-10" type="button" data-toggle="modal" data-target="#" data-placement="top">
@@ -144,22 +144,18 @@
             <!-- End of Main Content -->
 
             <!-- Page filter table -->
-            <!-- <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+            <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
             <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
-            <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script> -->
+            <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
             
-
-            
-
             <!-- Page filter table -->
             <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
             <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
             <script src="https://cdn.datatables.net/fixedheader/3.2.3/js/dataTables.fixedHeader.min.js"></script>
-        
-            
+
             <script>
                 $(document).ready(function () {
                     // Setup - add a text input to each footer cell

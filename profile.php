@@ -16,7 +16,7 @@
 <?php 
     error_reporting(0); 
     $statusMessage = '';
-    $targetDir = "uploads/employees";
+    // $targetDir = "uploads/employees/";
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit_profile'])) {
         $emp_id = $_GET["emp_id"];
@@ -32,41 +32,27 @@
         $emp_email = $_POST["emp_email"];
         $emp_pass =$_POST["emp_pass"];
 
-        if (!empty($_FILES["emp_img"]["name"])) {
-            $file_name = basename($_FILES["emp_img"]["name"]);
-            $target_filePath = $targetDir . $file_name;
-            $file_type = pathinfo($target_filePath, PATHINFO_EXTENSION);
+        $filename = $_FILES["emp_img"]["name"];
+        $tempname = $_FILES["emp_img"]["tmp_name"];
+        $folder = "./uploads/employees/" . $filename;
 
-            // Allow certain file formats
-            $allow_types = array('jpg','png','jpeg');
-            if(in_array($file_type, $allow_types)) {
-
-                // upload file/img to server 
-                if(move_uploaded_file($_FILES["emp_img"]["tmp_name"], $target_filePath)) {
-                    $sql = "UPDATE emp SET emp_name='$emp_name', emp_phonenum='$emp_phonenum', emp_pemail='$emp_pemail', emp_age='$emp_age', emp_address='$emp_address', dept_name='$dept_name', emp_position='$emp_position', emp_status='$emp_status', start_work='$start_work', emp_email='$emp_email', emp_pass='$emp_pass', emp_img='$file_name' WHERE emp_id='$emp_id' ";
-                    $query = mysqli_query($conn, $sql);
-
-                    if($query) {
-                        $statusMessage = "The file/image " .$file_name. " has been uploaded successfully";
-                    }
-                    else {
-                        $statusMessage = "The file/image has been uploaded failedd!!";
-                    } 
-                }
-                else {
-                    $statusMessage = "Error upload the files/images";
-                }
-            }
-            else {
-                $statusMessage = "Sorry!!! The file/image only JPG JPEG PNG";
-            }
+        // QUERY FOR ADD NEW EMPLOYEES TO DATABASE
+        $sql = "UPDATE emp SET emp_name='$emp_name', emp_phonenum='$emp_phonenum', emp_pemail='$emp_pemail', emp_age='$emp_age', emp_address='$emp_address', dept_name='$dept_name', emp_position='$emp_position', emp_status='$emp_status', start_work='$start_work', emp_email='$emp_email', emp_pass='$emp_pass', emp_img='$filename' WHERE emp_id='$emp_id' ";
+        $query=mysqli_query($conn, $sql);
+            
+        // Now let's move the uploaded image into the folder: image
+        if ($query && move_uploaded_file($tempname, $folder)) {
+            $statusMessage = "YES upload the files/images";
+            // echo "<script type='text/javascript'> document.location ='emp.php'; </script>";
         }
-        else {
-            $statusMessage = "Select a file / image to upload!";
+        else {   
+            $statusMessage = "erororrorr";
+            // echo "<script>alert('Something Went Wrong. Please try again');</script>";
         }
+            
     }
     else {
-        $statusMessage = "ERROR";
+        $statusMessage = "";
     }
 ?>
 
@@ -97,9 +83,14 @@
                 <br>
             </div>
             <div class="card-body">
+
+                <!-- Message upload files/images -->
+                <?php   if(!empty($statusMessage)) { ?>
+                    <p class="text-light text-center bg-success font-weight-bold border border-info rounded-sm shadow-sm py-4"> <?php echo $statusMessage ?></p>
+                <?php }  ?>
                 
                 <!-- FORM ADD NEW SERVICE -->
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     <?php
                         $emp_id = $_GET["emp_id"];
                         $ret=mysqli_query($conn,"SELECT * FROM emp WHERE emp_id='$emp_id'");
@@ -185,8 +176,9 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="emp_name">Upload Image</label>
-                                <input type="file" class="form-control"  placeholder="" name="emp_img">
+                                <label for="emp_name" class="pr-5">Upload Image</label>
+                                <img src="./uploads/employees/<?php echo $row['emp_img']; ?>" class="border border-danger" width="100px" height="100px">
+                                <input type="file" class="form-control my-3"  placeholder="" value="<?php echo $row['emp_img'];?>" name="emp_img">
                             </div>
                         </div> 
                         

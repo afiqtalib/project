@@ -10,12 +10,13 @@
         include 'includes/header.php';
 
     //Extra JS FILES
-    // echo "<script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>";
+    echo "<script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>";
 ?>
 
 <?php 
-    $errorMessage = "error inserted";
-    $successMessage = "successfully inseertt data";
+
+    error_reporting(0); 
+    $statusMessage = '';
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_new_emp'])) {
         $emp_name = $_POST["emp_name"];
@@ -30,17 +31,22 @@
         $emp_email = $_POST["emp_email"];
         $emp_pass =$_POST["emp_pass"];
 
-        
+        $filename = $_FILES["emp_img"]["name"];
+        $tempname = $_FILES["emp_img"]["tmp_name"];
+        $folder = "./uploads/employees/" . $filename;
+
         // QUERY FOR ADD NEW EMPLOYEES TO DATABASE
-        $sql = "INSERT INTO emp (emp_name, emp_phonenum, emp_pemail, emp_age, emp_address, dept_name, emp_position, emp_status, start_work, emp_email, emp_pass) VALUE ('$emp_name', '$emp_phonenum', '$emp_pemail', '$emp_age', '$emp_address', '$dept_name', '$emp_position', '$emp_status', '$start_work', '$emp_email', '$emp_pass' )";
+        $sql = "INSERT INTO emp (emp_name, emp_phonenum, emp_pemail, emp_age, emp_address, dept_name, emp_position, emp_status, start_work, emp_email, emp_pass, emp_img) VALUE ('$emp_name', '$emp_phonenum', '$emp_pemail', '$emp_age', '$emp_address', '$dept_name', '$emp_position', '$emp_status', '$start_work', '$emp_email', '$emp_pass', '$filename' )";
         $query=mysqli_query($conn, $sql);
-        if ($query){
-            echo "<script>alert('You have successfully inserted the new emp data');</script>";
-            echo "<script type='text/javascript'> document.location ='emp.php'; </script>";
+            
+        // Now let's move the uploaded image into the folder: image
+        if ($query && move_uploaded_file($tempname, $folder)) {
+            echo '<script type="text/javascript">sweetAlert("Success !"," Your application is successfully","success")</script>';        
+            // echo "<script type='text/javascript'> document.location ='emp.php'; </script>";
         }
-        else
-        {
-          echo "<script>alert('Something Went Wrong. Please try again');</script>";
+        else {   
+            echo '<script type="text/javascript">sweetAlert("Error !"," Your application is failed. Please fill all fields","error")</script>';        
+            // echo "<script>alert('Something Went Wrong. Please try again');</script>";
         }
     }
 ?>
@@ -69,42 +75,40 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Add New Employee</h6>
-                <br>
-                <h6 class="m-0 font-weight-bold text-danger">Admin need to add new Employee</h6>
             </div>
             <div class="card-body">
                 
                 <!-- FORM ADD NEW SERVICE -->
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="emp_name">Employee Name</label>
-                                <input type="text" class="form-control"  placeholder="Enter Employee Name" name="emp_name" required="true">
+                                <input type="text" class="form-control"  placeholder="Enter Employee Name" name="emp_name" >
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="emp_phonenum">Phone Number</label>
-                                <input type="text" class="form-control" placeholder="0184254524" name="emp_phonenum" required="true" maxlength="11" pattern="[0-9]+">
+                                <input type="text" class="form-control" placeholder="0184254524" name="emp_phonenum"  maxlength="11" pattern="[0-9]+">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="emp_pemail">Email</label>
-                                <input type="email" class="form-control" placeholder="ali@gmail.com" name="emp_pemail" required="true">
+                                <input type="email" class="form-control" placeholder="ali@gmail.com" name="emp_pemail" >
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="emp_age">Age</label>
-                                <input type="number" class="form-control" placeholder="Enter employee age" name="emp_age" required="true" maxlength="2" pattern="[1-9]+">
+                                <input type="number" class="form-control" placeholder="Enter employee age" name="emp_age" maxlength="2" pattern="[1-9]+">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="address">Address</label>
-                                <input type="text" class="form-control"  placeholder="Enter employee address" name="emp_address" required="true">
+                                <input type="text" class="form-control"  placeholder="Enter employee address" name="emp_address">
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -122,7 +126,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="position">Position</label>
-                                <input type="text" class="form-control"  placeholder="Enter employee position" name="emp_position" required="true">
+                                <input type="text" class="form-control"  placeholder="Enter employee position" name="emp_position">
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -139,21 +143,27 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="Startwork">Start Work</label>
-                                <input type="date" class="form-control" placeholder="DD/MM/YYYY" name="start_work" required="true">
+                                <input type="date" class="form-control" placeholder="DD/MM/YYYY" name="start_work" >
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="emp_username">Email</label>
-                                <input type="text" class="form-control" placeholder="pmsb.name@gmail.com" name="emp_email" required="true">
+                                <input type="text" class="form-control" placeholder="pmsb.name@gmail.com" name="emp_email" >
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="emp_password">Password</label>
-                                <input type="text" class="form-control" placeholder="Employee Password" value="12345" name="emp_pass" required="true">
+                                <input type="text" class="form-control" placeholder="Employee Password" value="12345" name="emp_pass" >
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="emp_name">Upload File/Image</label>
+                                <input type="file" class="form-control"  placeholder="" name="emp_img">
+                            </div>
+                        </div> 
 
                     </div>
                 
