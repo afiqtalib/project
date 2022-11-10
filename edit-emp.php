@@ -10,7 +10,7 @@
         include 'includes/header.php';
 
     //Extra JS FILES
-    // echo "<script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>";
+    echo "<script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>";
 ?>
 
 <?php 
@@ -42,12 +42,11 @@
             
         // Now let's move the uploaded image into the folder: image
         if ($query && move_uploaded_file($tempname, $folder)) {
-            $statusMessage = "YES upload the files/images";
+            $statusMessage = "YES berjaya upload the files/images and update emp profile";
             // echo "<script type='text/javascript'> document.location ='emp.php'; </script>";
         }
         else {   
             $statusMessage = "erororrorr try submit again";
-            // echo "<script>alert('Something Went Wrong. Please try again');</script>";
         }
             
     }

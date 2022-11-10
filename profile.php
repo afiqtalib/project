@@ -13,40 +13,6 @@
     // echo "<script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>";
 ?>
 
-<?php 
-    error_reporting(0); 
-    $statusMessage = '';
-    // $targetDir = "uploads/employees/";
-
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['edit_profile'])) {
-        $admin_id = $_GET["admin_id"];
-
-        $admin_name = $_POST["admin_name"];
-        $admin_phone = $_POST["admin_phone"];
-        $admin_email = $_POST["email"];
-        $admin_pass =$_POST["password"];
-
-        $filename = $_FILES["ad_img"]["name"];
-        $tempname = $_FILES["ad_img"]["tmp_name"];
-        $folder = "./uploads/admin/" . $filename;
-
-        // QUERY FOR ADD NEW EMPLOYEES TO DATABASE
-        $sql = "UPDATE admin SET admin_name='$admin_name', admin_phone='$admin_phone', email='$admin_email', password='$admin_pass', ad_img='$filename' WHERE admin_id=$admin_id";
-        $query=mysqli_query($conn, $sql);
-            
-        // Now let's move the uploaded image into the folder: image
-        if ($query && move_uploaded_file($tempname, $folder)) {
-            $statusMessage = "YES upload the files/images";
-            // echo "<script type='text/javascript'> document.location ='emp.php'; </script>";
-        }
-        else {   
-            $statusMessage = "erororrorr try submit again";
-            // echo "<script>alert('Something Went Wrong. Please try again');</script>";
-        }
-            
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,79 +25,89 @@
 <body>
     <!-- Begin Page Content -->
     <div class="container-fluid">
-    
-        <!-- Page Heading -->
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">MY PROFILE</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                <i class="fas fa-download fa-sm text-white-50"></i>
-                Generate Report
-            </a>
-        </div>
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">ADMIn site</h6>
+        <!-- Breadcrum -->
+        <div class="row">
+            <div class="col">
+                <nav aria-label="breadcrumb" class="bg-light rounded-3 mb-4">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="#">Profile</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><?php echo $_SESSION['admin_name'];?></li>
+                </ol>
+                </nav>
             </div>
-            <div class="card-body">
-
-                <!-- Message upload files/images -->
-                <?php   if(!empty($statusMessage)) { ?>
-                    <p class="text-light text-center bg-success font-weight-bold border border-info rounded-sm shadow-sm py-4"> <?php echo $statusMessage ?></p>
-                <?php }  ?>
+        </div>
+            <?php
+                $user = $_SESSION['email_system'];
+                $sql = "SELECT * FROM admin WHERE email='$user'";
+                $result = mysqli_query($conn, $sql);
+                $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
                 
-                <!-- FORM ADD NEW SERVICE -->
-                <form method="POST" enctype="multipart/form-data">
-                    <?php
-                        $admin_id = $_GET["admin_id"];
-                        $ret=mysqli_query($conn,"SELECT * FROM admin WHERE admin_id='$admin_id'");
-                        while ($row=mysqli_fetch_array($ret)) {
-                    ?>
-                    <input type="hidden" value="<?php echo $row['admin_id']; ?>">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="emp_name">Employee Name</label>
-                                <input type="text" value="<?php echo $row['admin_name']; ?>"class="text-dark form-control"  placeholder="Employee Name" name="admin_name">
+                foreach($rows as $admin) {        
+            ?>
+            <!-- PROFILE IMAGES -->
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <!-- https://source.unsplash.com/featured?technology/200x200 -->
+                            <img src="./uploads/admin/<?php echo $admin['ad_img']; ?>" alt="avatar"
+                            class="rounded img-fluid" style="width: 350px;">
+                            <h5 class="my-3">#ID : <?php echo $admin['admin_id']; ?></h5>
+                            <p class="text-muted mb-4">Admin of Employee Self System(ESS)</p>
+                            <div class="d-flex justify-content-center mb-2">
+                                <!-- <button type="button" class="btn btn-primary mr-3">Follow</button> -->
+                                <!-- <button type="button" class="btn btn-outline-primary ms-1">Update</button> -->
+                                <a href="profile-edit.php?admin_id=<?php echo $admin['admin_id']; ?> " class="btn btn-outline-primary ms-1">Update</a>
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="emp_phonenum">Phone Number</label>
-                                <input type="text" value="<?php echo $row['admin_phone']; ?>" class="form-control" placeholder="0184254524" name="admin_phone" maxlength="11" pattern="[0-9]+">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="emp_pemail">Email</label>
-                                <input type="email" value="<?php echo $row['email']; ?>" class="form-control" placeholder="ali@gmail.com" name="email" >
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="emp_password">Password</label>
-                                <input type="text" value="<?php echo $row['password'];?>" class="form-control" placeholder="Emp Password" name="password" >
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="emp_name" class="pr-5">Upload Image</label>
-                                <img src="./uploads/admin/<?php echo $row['ad_img']; ?>" class="border border-danger" width="100px" height="100px">
-                                <input type="file" class="form-control my-3"  placeholder="" value="<?php echo $row['ad_img'];?>" name="ad_img">
-                            </div>
-                        </div> 
                     </div>
-                
-                    <!-- SUBMIT BUTTON -->
-
-                    <button type="submit" name="edit_profile" class="btn btn-success" >                            
-                        <i class="fa fa-plus"></i>  Edit profile
-                    </button>
-
-                    <?php } ?> 
-
-                </form>
+                </div>
+                <!-- PROFILE INFORMATION -->
+                <div class="col-lg-8">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Full Name</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0"><?php echo $admin['admin_name'];?></p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Email</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0"><?php echo $admin['email']; ?></p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Phone</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0"><?php echo $admin['admin_phone']; ?></p>
+                                </div>
+                            </div>
+                            <hr>
+                            
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Password</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0"><?php echo $admin['password']; }?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
-        </div>
     </div>
 </body>
 </html>
@@ -141,7 +117,7 @@
 ?>
 
 <?php  
-        include 'includes/footer.php';
+    include 'includes/footer.php';
 }
 	else
     {

@@ -14,9 +14,6 @@
 ?>
 
 <?php 
-    $errorMessage = "error inserted";
-    $successMessage = "successfully inseertt data";
-
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['apply'])) {
 
         $lv_type = $_POST['lv_type'];

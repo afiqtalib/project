@@ -367,19 +367,25 @@
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                         <?php
-                                            
-                                            if(isset($_SESSION['admin_id']) && isset($_SESSION['email_system']) && isset($_SESSION['password_system'])) {
-                                                echo $_SESSION['email_system'];
-                                            } 
+                                            echo $_SESSION['admin_name'];
                                         ?>
                                     </span>
+                                    <!-- Image profile  src="img/undraw_profile.svg" -->
+                                        <?php
+                                            $admin_system = $_SESSION['email_system'];
+                                            $sql = "SELECT * FROM admin WHERE email='$admin_system'";
+                                            $result = mysqli_query($conn, $sql);
+                                            $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                                            
+                                            foreach($rows as $admin) {        
+                                        ?>
                                     <img class="img-profile rounded-circle"
-                                        src="img/undraw_profile.svg">
+                                        src="./uploads/admin/<?php echo $admin['ad_img']; } ?>">
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                     aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="profile-view.php">
+                                    <a class="dropdown-item" href="profile.php">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Profile
                                     </a>

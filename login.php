@@ -56,8 +56,8 @@
             $_SESSION['email_system'] = $email;
             $_SESSION['password_system'] = $password;
             $_SESSION['admin_name'] = $num['admin_name'];
-            $_SESSION['admin_id'] = $num['admin_id'];
-            // $_SESSION['admin_id'] = $sql['admin_id'];
+            // $_SESSION['admin_id'] = $num['admin_id'];
+            $_SESSION['admin_id'] = $sql['admin_id'];
             header("location:index.php");
             exit();
         }
@@ -84,9 +84,11 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
+                            <!--COLUMN IMAGE LOGIN PAGE -->
                             <div class="col-lg-6 d-none d-lg-block">
-                                <img src="https://source.unsplash.com/450x600" alt="" style="background-position: center;  background-size:cover;">
+                                <img src="https://source.unsplash.com/450x555" alt="bg-login" style="background-position: center;  background-size:cover;">
                             </div>
+                            <!-- COLUMN FORM LOGIN -->
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
@@ -111,10 +113,6 @@
                                         </div>
                                         <!-- Button Login -->
                                         <button type="submit" name="login" class="btn btn-primary btn-user btn-block">Login</button>
-
-                                        <!-- <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a> -->
                                         <hr>
                                         <a href="index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
@@ -126,9 +124,6 @@
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>
