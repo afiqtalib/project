@@ -63,7 +63,7 @@
         </div>
 
         <!-- CARD LEAVE APPLICATION -->
-        <div class="card o-hidden border-0 shadow-lg m-2">
+        <div class="card o-hidden border shadow-sm m-2 mb-3">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary text-center">Leave Application Form</h6>
             </div>
@@ -146,7 +146,7 @@
 
 
                                 <!-- Button Apply -->
-                                <button type="submit" name="apply" class="btn btn-primary btn-block">Login</button>
+                                <button type="submit" name="apply" class="btn btn-primary btn-block">Submit</button>
 
                                 <button type="reset" name="reset" class="btn btn-primary btn-block">Reset</button>
 
@@ -163,50 +163,56 @@
             </div>
         </div>
 
-        <!-- Collapsable Card Example -->
-        <div class="card shadow mb-4">
+        <!-- Collapsable Card FOR MODULE 1 video-->
+        <div class="card o-hidden border shadow-sm m-2 mb-3">
             <!-- Card Header - Accordion -->
             <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
                 role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                <h6 class="m-0 font-weight-bold text-primary">Collapsable Card Example</h6>
+                <h5 class="m-0 font-weight-bold text-primary">Tajuk Video module 1</h5>
             </a>
             <!-- Card Content - Collapse -->
-            <div class="collapse show" id="collapseCardExample">
+            <div class="collapse" id="collapseCardExample">
                 <div class="card-body">
-                    <div class="embed-responsive embed-responsive-4by3 rounded" style="width: 50%;">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
-                    </div>
-                    
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <!-- Nested Row within Card Body -->
+                            <div class="embed-responsive embed-responsive-4by3 rounded" style="width: 100%;">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-justify">
+                            <!-- Nested Row within Card Body -->
+                            <h1 class="h4 text-gray-900 font-weight-bold mb-4">Tajuk module 1</h1><hr>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>                        
+                    </div>                                        
                 </div>
             </div>
         </div>
 
-        <!-- Card Module video -->
-        <div class="card o-hidden border-0 shadow-lg m-2">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary text-center">Leave Application Form</h6>
-            </div>
-            <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                    
-                    <div class="col-lg-12">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 font-weight-bold mb-4">Leave Application</h1>
+        <!-- Collapsable Card FOR MODULE 2 video-->
+        <div class="card o-hidden border shadow-sm m-2">
+            <!-- Card Header - Accordion -->
+            <a href="#collapseCard2" class="d-block card-header py-3" data-toggle="collapse"
+                role="button" aria-expanded="false" aria-controls="collapseCard2">
+                <h5 class="m-0 font-weight-bold text-primary">TAJUK MODULE 2</h5>
+            </a>
+            <!-- Card Content - Collapse -->
+            <div class="collapse" id="collapseCard2">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <!-- Nested Row within Card Body -->
+                            <div class="embed-responsive embed-responsive-4by3 rounded" style="width: 100%;">
+                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
                             </div>
-                            
-                            <div class="embed-responsive embed-responsive-4by3 rounded" style="width: 50%;">
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
-</div>
-
-                            <hr>
-                            <div class="text-center">
-                                <a class="small" href="forgot-password.html">Forgot Password?</a>
-                            </div>
-                            
                         </div>
-                    </div>
+                        <div class="col-lg-4 text-justify">
+                            <!-- Nested Row within Card Body -->
+                            <h1 class="h4 text-gray-900 font-weight-bold mb-4">Tajuk module 2</h1><hr>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>                        
+                    </div>                                        
                 </div>
             </div>
         </div>

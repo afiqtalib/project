@@ -33,6 +33,9 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!-- //Extra JS FILES -->
+    <script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>
+
 </head>
 
 <!-- PHP SCRIPT WHEN SUBMIT -->
@@ -49,29 +52,23 @@
         $query=mysqli_query($conn,$sql);
         $num=mysqli_fetch_array($query);
 
-        if($num>0)
-            {
+        if($num>0) {
             $_SESSION['email_system'] = $email;
             $_SESSION['password_system'] = $password;
-            $_SESSION['admin_id'] = $sql['admin_id'];
+            $_SESSION['admin_name'] = $num['admin_name'];
+            $_SESSION['admin_id'] = $num['admin_id'];
+            // $_SESSION['admin_id'] = $sql['admin_id'];
             header("location:index.php");
             exit();
-            }
-        else
-            {
-                ?>
-
-                <div class="alert alert-danger">
-                    <button data-dismiss="alert" class="close close-sm" type="button">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <div class="messages">
-                        <div>Username and/or password are incorrect!</div>
-                    </div>
-                </div>
-
-                <?php
-            }
+        }
+        else { ?>                    
+            <div class="messages">
+                <?php           
+                    echo '<script type="text/javascript">sweetAlert("Incorrect email/password !"," Your login is failed","error")</script>';        
+                ?>       
+            </div>
+        <?php
+        }
     }
 ?>
 <body class="bg-gradient-primary">

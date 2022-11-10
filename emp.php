@@ -122,7 +122,7 @@
                                             <td>
                                                 <li class="list-inline-item"  data-toggle="tooltip" title="Edit profile">
                                                     <button class="btn btn-success btn-sm rounded-10" type="button" data-toggle="modal" data-target="#" data-placement="top">
-                                                        <a href="profile.php?emp_id=<?php echo $emp['emp_id']; ?> " style="color: white;">
+                                                        <a href="edit-emp.php?emp_id=<?php echo $emp['emp_id']; ?> " style="color: white;">
                                                             <i class="fas 	fa-user-edit fa-lg "></i>
                                                         </a>
                                                     </button>
@@ -156,7 +156,7 @@
             <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
             <script src="https://cdn.datatables.net/fixedheader/3.2.3/js/dataTables.fixedHeader.min.js"></script>
 
-            <script>
+            <!-- <script>
                 $(document).ready(function () {
                     // Setup - add a text input to each footer cell
                     $('#dataTable thead tr')
@@ -223,7 +223,7 @@
                         },
                     });
                 });
-            </script>
+            </script> -->
         </body>
 
 </html>
