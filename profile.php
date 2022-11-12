@@ -38,8 +38,8 @@
             </div>
         </div>
             <?php
-                $user = $_SESSION['email_system'];
-                $sql = "SELECT * FROM admin WHERE email='$user'";
+                $user = $_SESSION['admin_id'];
+                $sql = "SELECT * FROM admin WHERE admin_id='$user'";
                 $result = mysqli_query($conn, $sql);
                 $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
                 

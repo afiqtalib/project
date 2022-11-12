@@ -50,14 +50,16 @@
 
         $sql = "SELECT * FROM admin WHERE email='$email' AND password='$password' ";
         $query=mysqli_query($conn,$sql);
-        $num=mysqli_fetch_array($query);
+        $row=mysqli_fetch_assoc($query);
+        $num = mysqli_num_rows($query);
 
         if($num>0) {
+            session_start();
             $_SESSION['email_system'] = $email;
             $_SESSION['password_system'] = $password;
-            $_SESSION['admin_name'] = $num['admin_name'];
+            $_SESSION['admin_name'] = $row['admin_name'];
             // $_SESSION['admin_id'] = $num['admin_id'];
-            $_SESSION['admin_id'] = $sql['admin_id'];
+            $_SESSION['admin_id'] = $row['admin_id'];
             header("location:index.php");
             exit();
         }
