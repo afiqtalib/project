@@ -22,11 +22,11 @@
         $lv_duration = $_POST['lv_duration'];
         $lv_reasons = $_POST['lv_reasons'];
 
-        $admin_id = $_SESSION['admin_id'];
+        $admin = $_SESSION['admin_id'];
 
         
         // QUERY FOR ADD NEW EMPLOYEES TO DATABASE
-        $sql = " INSERT INTO cuti (lv_type, from_date, to_date, lv_duration, lv_reasons, admin_id) VALUES ('$lv_type','$from_date','$to_date','$lv_duration','$lv_reasons','$admin_id') ";
+        $sql = " INSERT INTO cuti (lv_type, from_date, to_date, lv_duration, lv_reasons, admin_id) VALUE ('$lv_type','$from_date','$to_date','$lv_duration','$lv_reasons', '$admin') ";
         $query=mysqli_query($conn, $sql);
         if ($query){
             echo '<script type="text/javascript">sweetAlert("Success !"," Your application is failed","success")</script>';        

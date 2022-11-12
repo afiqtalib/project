@@ -32,7 +32,7 @@
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                     <li class="breadcrumb-item"><a href="#">Profile</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><?php echo $_SESSION['admin_name'];?></li>
+                    <li class="breadcrumb-item active" aria-current="page"><?php echo $_SESSION['admin_id'];?></li>
                 </ol>
                 </nav>
             </div>
