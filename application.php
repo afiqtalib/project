@@ -8,6 +8,7 @@
         //Includes
         include 'db_con.php';
         include 'includes/header.php';
+        include 'includes/function.php';
 
     //Extra JS FILES
     echo "<script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>";
@@ -15,17 +16,16 @@
 
 <?php 
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['apply'])) {
-
+        // variable INPUT form
         $lv_type = $_POST['lv_type'];
         $from_date = $_POST['from_date'];
         $to_date = $_POST['to_date'];
         $lv_duration = $_POST['lv_duration'];
         $lv_reasons = $_POST['lv_reasons'];
-
+        // user SESSION
         $admin = $_SESSION['admin_id'];
-
         
-        // QUERY FOR ADD NEW EMPLOYEES TO DATABASE
+        // QUERY FOR INSERT LEAVE APPLICATION TO DATABASE
         $sql = " INSERT INTO cuti (lv_type, from_date, to_date, lv_duration, lv_reasons, created_date, admin_id) VALUES ('$lv_type','$from_date','$to_date','$lv_duration','$lv_reasons', now(), '$admin') ";
         $query=mysqli_query($conn, $sql);
         if ($query){
@@ -72,24 +72,39 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 font-weight-bold mb-4">Employee Leave Information</h1>
                             </div>
+                            <!-- variable list cuti -->
+                            <?php
+                                // $cutisakit = "3";
+                                // $totCS = "30";
+
+                                // $total = totcuti($totCS, $cutisakit);
+
+                                // $cutitahunan = '3';
+                                // $totCT = '14';
+                                // $cutikecemasan = '3';
+                                // $totCK = '3';
+                                // $tanpagaji = '2';
+                                // $totTG = '5';
+                                $totalCS = '10';
+                            ?>
                             
                             <!-- Balance cuti emp -->
                             <ul class="list-group">
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     Cuti Sakit (MC)
-                                    <span class="badge badge-primary badge-pill">14</span>
+                                    <span class="badge badge-primary badge-pill"><?php echo totalcuti("lv_type", $total, "lv_duration"); ?></span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     Cuti Tahunan (Annual Leave)
-                                    <span class="badge badge-primary badge-pill">12</span>
+                                    <span class="badge badge-primary badge-pill"></span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     Cuti Kecemasan (Emergency Leave)
-                                    <span class="badge badge-primary badge-pill">2</span>
+                                    <span class="badge badge-primary badge-pill"></span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     Cuti Tanpa Gaji
-                                    <span class="badge badge-primary badge-pill">1</span>
+                                    <span class="badge badge-primary badge-pill">test</span>
                                 </li>
                             </ul>
 
@@ -111,7 +126,7 @@
                                         <label for="dept">Type of Leave</label>
                                         <select class=" form-control" name="lv_type">
                                             <option value="">Choose Type of Leave</option>
-                                            <option value="Cuti sakit">Cuti Sakit(MC)</option>
+                                            <option value="Cuti Sakit">Cuti Sakit(MC)</option>
                                             <option value="Cuti Tahunan">Cuti Tahunan</option>
                                             <option value="Cuti Kecemasan">Cuti Kecemasan</option>
                                             <option value="Tanpa Gaji">Tanpa Gaji</option>
@@ -119,20 +134,20 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="emp_age">Duration (days)</label>
-                                        <input type="number" class="form-control" placeholder="" name="lv_duration">
+                                        <input type="number" class="form-control" placeholder="total days" name="lv_duration">
                                     </div>
                                 </div>
                                 
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <label for="emp_age" class="text-small">From date</label>
-                                        <input type="date" class="form-control form-control" name="from_date"
-                                            id="exampleInputPassword" placeholder="Password">
+                                        <input type="date" class="form-control form-user" name="from_date"
+                                            id="exampleInputPassword" placeholder="" mindate="tomorrow" min="<?php echo date("Y-m-d", strtotime("+1day")); ?>">
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="emp_age" class="text-small">To date</label>
                                         <input type="date" class="form-control form-control" name="to_date"
-                                            id="exampleRepeatPassword" placeholder="Repeat Password">
+                                            id="exampleRepeatPassword" placeholder="" mindate="tomorrow" min="<?php echo date("Y-m-d", strtotime("+1day")); ?>">
                                     </div>
                                 </div>
 
@@ -145,13 +160,13 @@
                                 <!-- Button Apply -->
                                 <button type="submit" name="apply" class="btn btn-primary btn-block">Submit</button>
 
-                                <button type="reset" name="reset" class="btn btn-primary btn-block">Reset</button>
+                                <button type="reset" name="reset" class="btn btn-info btn-block">Reset</button>
 
                             </form>
 
                             <hr>
                             <div class="text-center">
-                                <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                <a class="small" href="#">Cancel</a>
                             </div>
                             
                         </div>
