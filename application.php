@@ -76,23 +76,20 @@
                             <?php
                                 // $cutisakit = "3";
                                 // $totCS = "30";
-
-                                // $total = totcuti($totCS, $cutisakit);
-
                                 // $cutitahunan = '3';
                                 // $totCT = '14';
                                 // $cutikecemasan = '3';
                                 // $totCK = '3';
                                 // $tanpagaji = '2';
                                 // $totTG = '5';
-                                $totalCS = '10';
+                                // $total = 10;
                             ?>
                             
                             <!-- Balance cuti emp -->
                             <ul class="list-group">
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     Cuti Sakit (MC)
-                                    <span class="badge badge-primary badge-pill"><?php echo totalcuti("lv_type", $total, "lv_duration"); ?></span>
+                                    <span class="badge badge-primary badge-pill"><?php echo total( '$total', "Cuti Sakit",'5'); ?></span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     Cuti Tahunan (Annual Leave)
