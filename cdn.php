@@ -8,9 +8,7 @@
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
 
-    <!-- <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
-
-    
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
     <!-- CSS BUTTON -->
     <script src="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"></script>
@@ -32,7 +30,7 @@
 
 <!-- CDN PRINT TABLE & CSS BUTTON -->
 
-<table id="test" class="table" style="width:100%">
+<table id="test" class="table table-bordered display" style="width:100%">
     <thead>
         <tr>
             <th>Name</th>

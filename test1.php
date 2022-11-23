@@ -33,7 +33,6 @@
 
 <!-- JS export table/data -->
 <script>
-    <script>
     $(document).ready(function() {
         $('#example').DataTable( {
             dom: 'Bfrtip',
@@ -42,7 +41,6 @@
             ]
         } );
     } );
-</script>
 </script>
     
     <!--START-->
