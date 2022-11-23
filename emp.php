@@ -38,110 +38,110 @@
 </head>
 
 <body id="page-top">
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">List Employees</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">List Employees</h1>
+        <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+            For more information about DataTables, please visit the <a target="_blank"
+                href="https://datatables.net">official DataTables documentation</a>.</p>
 
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Employees</h6>
-                        </div>
-                        <div class="card-body">
-                            <!-- ADD NEW SERVICE BUTTON -->
-                            <a href="new_emp.php" class="btn btn-success btn-md" style="margin-bottom: 10px;">
-                                <i class="fa fa-user-plus"></i> 
-                                Add New Emp
-                            </a>
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>#ID</th>
-                                            <th>Name</th>
-                                            <th>Phone Number</th>
-                                            <th>Personal Email</th>
-                                            <th>Age</th>
-                                            <th>Department</th>
-                                            <th>Position</th>
-                                            <th>Status</th>
-                                            <th>Start date</th>
-                                            <th>Email Work</th>
-                                            <th>Password</th>
-                                            <th>Profile Img</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>#ID</th>
-                                            <th>Name</th>
-                                            <th>Phone Number</th>
-                                            <th>Personal Email</th>
-                                            <th>Age</th>
-                                            <th>Department</th>
-                                            <th>Position</th>
-                                            <th>Status</th>
-                                            <th>Start date</th>
-                                            <th>Email Work</th>
-                                            <th>Password</th>
-                                            <th>Profile Img</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <?php
-                                            $sql = "SELECT * FROM emp";
-                                            $result = mysqli_query($conn, $sql);
-                                            $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
-                                            $count=1;
-                                            foreach($rows as $emp)
-                                            {
-                                        ?>
-                                        <tr>
-                                            <td> <?php echo $count++;?> </td>
-                                            <td> <?php echo $emp['emp_id'];?> </td>
-                                            <td> <?php echo $emp['emp_name'];?> </td>
-                                            <td> <?php echo $emp['emp_phonenum'];?> </td>
-                                            <td> <?php echo $emp['emp_pemail'];?> </td>
-                                            <td> <?php echo $emp['emp_age'];?> </td>
-                                            <td> <?php echo $emp['dept_name'];?> </td>
-                                            <td> <?php echo $emp['emp_position'];?> </td>
-                                            <td> <?php echo $emp['emp_status'];?> </td>
-                                            <td> <?php echo $emp['start_work'];?> </td>
-                                            <td> <?php echo $emp['emp_email'];?> </td>
-                                            <td> <?php echo $emp['emp_pass'];?> </td>
-                                            <td class="justify-content-center"> <img src="./uploads/employees/<?php echo $emp['emp_img']; ?>" width="100px"> </td>     
-                                            <td>
-                                                <li class="list-inline-item"  data-toggle="tooltip" title="Edit profile">
-                                                    <button class="btn btn-success btn-sm rounded-10" type="button" data-toggle="modal" data-target="#" data-placement="top">
-                                                        <a href="edit-emp.php?emp_id=<?php echo $emp['emp_id']; ?> " style="color: white;">
-                                                            <i class="fas 	fa-user-edit fa-lg "></i>
-                                                        </a>
-                                                    </button>
-                                                </li>
-                                            </td>                                         
-                                        </tr>
-                                        <?php } ?>
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.container-fluid -->
-
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Employees</h6>
             </div>
-            <!-- End of Main Content -->
+            <div class="card-body">
+                <!-- ADD NEW SERVICE BUTTON -->
+                <a href="new_emp.php" class="btn btn-success btn-md" style="margin-bottom: 10px;">
+                    <i class="fa fa-user-plus"></i> 
+                    Add New Emp
+                </a>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>#ID</th>
+                                <th>Name</th>
+                                <th>Phone Number</th>
+                                <th>Personal Email</th>
+                                <th>Age</th>
+                                <th>Department</th>
+                                <th>Position</th>
+                                <th>Status</th>
+                                <th>Start date</th>
+                                <th>Email Work</th>
+                                <th>Password</th>
+                                <th>Profile Img</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>No</th>
+                                <th>#ID</th>
+                                <th>Name</th>
+                                <th>Phone Number</th>
+                                <th>Personal Email</th>
+                                <th>Age</th>
+                                <th>Department</th>
+                                <th>Position</th>
+                                <th>Status</th>
+                                <th>Start date</th>
+                                <th>Email Work</th>
+                                <th>Password</th>
+                                <th>Profile Img</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <?php
+                                $sql = "SELECT * FROM emp";
+                                $result = mysqli_query($conn, $sql);
+                                $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                                $count=1;
+                                foreach($rows as $emp)
+                                {
+                            ?>
+                            <tr>
+                                <td> <?php echo $count++;?> </td>
+                                <td> <?php echo $emp['emp_id'];?> </td>
+                                <td> <?php echo $emp['emp_name'];?> </td>
+                                <td> <?php echo $emp['emp_phonenum'];?> </td>
+                                <td> <?php echo $emp['emp_pemail'];?> </td>
+                                <td> <?php echo $emp['emp_age'];?> </td>
+                                <td> <?php echo $emp['dept_name'];?> </td>
+                                <td> <?php echo $emp['emp_position'];?> </td>
+                                <td> <?php echo $emp['emp_status'];?> </td>
+                                <td> <?php echo $emp['start_work'];?> </td>
+                                <td> <?php echo $emp['emp_email'];?> </td>
+                                <td> <?php echo $emp['emp_pass'];?> </td>
+                                <td class="justify-content-center"> <img src="./uploads/employees/<?php echo $emp['emp_img']; ?>" width="100px"> </td>     
+                                <td>
+                                    <li class="list-inline-item"  data-toggle="tooltip" title="Edit profile">
+                                        <button class="btn btn-success btn-sm rounded-10" type="button" data-toggle="modal" data-target="#" data-placement="top">
+                                            <a href="edit-emp.php?emp_id=<?php echo $emp['emp_id']; ?> " style="color: white;">
+                                                <i class="fas 	fa-user-edit fa-lg "></i>
+                                            </a>
+                                        </button>
+                                    </li>
+                                </td>                                         
+                            </tr>
+                            <?php } ?>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
 
             <!-- Page filter table -->
             <!-- <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
