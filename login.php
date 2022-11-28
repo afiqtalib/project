@@ -39,7 +39,6 @@
 </head>
 
 <!-- PHP SCRIPT WHEN SUBMIT -->
-
 <?php
 
     if( $_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login']))
@@ -59,7 +58,7 @@
             $_SESSION['password_system'] = $password;
             $_SESSION['admin_name'] = $row['admin_name'];
             // $_SESSION['admin_id'] = $num['admin_id'];
-            $_SESSION['admin_id'] = $row['admin_id'];
+            $_SESSION['admin_id'] = $row['admin_id']; 
             header("location:index.php");
             exit();
         }
