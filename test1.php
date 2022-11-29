@@ -191,5 +191,3 @@
         </div>
       
 <?php $this->load->view('v_user_footer');?>
-
-    <script type="text/javascript" language="javascript" src=""></script>
