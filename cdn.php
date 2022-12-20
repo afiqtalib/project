@@ -21,7 +21,7 @@
         $('#test').DataTable( {
             dom: 'Bfrtip',
             buttons: [
-                'csv', 'excel', 'pdf', 'print'
+                'csv', 'pdf', 'print'
             ]
         } );
     } );
