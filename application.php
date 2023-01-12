@@ -45,6 +45,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Emp</title>
+    <link rel="website icon" type="png" href="uploads/employees/logo.png">
 </head>
 
 <body>
@@ -89,7 +90,7 @@
                             <ul class="list-group">
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     Cuti Sakit (MC)
-                                    <span class="badge badge-primary badge-pill"><?php echo total( '$total', "Cuti Sakit",'5'); ?></span>
+                                    <span class="badge badge-primary badge-pill"></span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     Cuti Tahunan (Annual Leave)

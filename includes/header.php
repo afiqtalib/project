@@ -10,6 +10,7 @@
 	  	<meta name="author" content="JAIRI IDRISS">
 
   		<title>System | Dashboard</title>
+        <link rel="website icon" type="png" href="uploads/logo.png">
 
         <!-- Custom fonts for this template-->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
